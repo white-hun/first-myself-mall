@@ -1,8 +1,12 @@
+import { auth } from "../firebaseConfig";
 import React from "react";
-import { GoogleAuthProvider } from "firebase/auth";
-
-const provider = new GoogleAuthProvider();
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export default function Login() {
-  return <button>Login</button>;
+  const handleGoogleLogin = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
+  };
+
+  return <button onClick={handleGoogleLogin}>Login</button>;
 }
