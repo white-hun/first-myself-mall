@@ -1,5 +1,8 @@
 import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+
+const provider = new GoogleAuthProvider();
 
 export default function Login() {
-  return <div>Login</div>;
+  return <button>Login</button>;
 }

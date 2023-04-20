@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
+import { BsShop } from "react-icons/bs";
+import { GrShop } from "react-icons/gr";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -8,11 +10,14 @@ export default function Header() {
   return (
     <header>
       <Link to="/">
+        <BsShop />
         <p>shoppy</p>
       </Link>
       <div>
         <button onClick={hanbleClick}>products</button>
-        <button>장바구니</button>
+        <button>
+          <GrShop />
+        </button>
         <div>
           <Login />
         </div>
@@ -20,3 +25,5 @@ export default function Header() {
     </header>
   );
 }
+
+// admin 이면 새로운 제품 등록할 수 있는 수정버튼(제품등록 페이지)
