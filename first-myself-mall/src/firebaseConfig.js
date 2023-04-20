@@ -12,7 +12,7 @@ import {
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: "https://shoppy-6f25b-default-rtdb.asia-southeast1.firebasedatabase.app",
+  databaseURL: process.env.REACT_APP_DATABASEURL,
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKE,
   messagingSenderId: process.env.REACT_APP_MESSAGEING_SENDER_ID,
