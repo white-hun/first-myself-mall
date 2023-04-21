@@ -3,10 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Login from "../service/Login";
 import { BsShop } from "react-icons/bs";
 import { GrShop } from "react-icons/gr";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../service/firebaseConfig";
+import Logout from "../service/Logout";
 
 export default function Header() {
   const navigate = useNavigate();
   const hanbleClick = () => navigate("/product");
+
   return (
     <header>
       <Link to="/">
@@ -19,7 +23,9 @@ export default function Header() {
           <GrShop />
         </button>
         <div>
-          <Login />
+          {onAuthStateChanged(auth, (user) => {
+            user != null ? <Login /> : <Logout />;
+          })}
         </div>
       </div>
     </header>
