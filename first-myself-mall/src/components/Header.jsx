@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Login from "./Login";
+import Login from "../service/Login";
 import { BsShop } from "react-icons/bs";
 import { GrShop } from "react-icons/gr";
 
