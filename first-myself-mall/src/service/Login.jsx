@@ -17,6 +17,7 @@ export default function Login() {
   const handleGoogleLogOut = () => {
     const auth = getAuth();
     signOut(auth);
+    setUserData(null);
   };
   const handleNewProduct = () => {
     navigate("/products/new");
