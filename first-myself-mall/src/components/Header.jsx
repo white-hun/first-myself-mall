@@ -5,7 +5,6 @@ import { BsShop } from "react-icons/bs";
 import { GrShop } from "react-icons/gr";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../service/firebaseConfig";
-import Logout from "../service/Logout";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -23,9 +22,7 @@ export default function Header() {
           <GrShop />
         </button>
         <div>
-          {onAuthStateChanged(auth, (user) => {
-            user != null ? <Login /> : <Logout />;
-          })}
+          <Login />
         </div>
       </div>
     </header>

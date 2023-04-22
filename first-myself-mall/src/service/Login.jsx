@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../service/firebaseConfig";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { BsPencilFill } from "react-icons/bs";
 
 export default function Login() {
   const [userData, setUserData] = useState(null);
+  const navigate = useNavigate();
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((data) => {
@@ -11,11 +14,27 @@ export default function Login() {
       console.log(data);
     });
   };
+  const handleGoogleLogOut = () => {
+    const auth = getAuth();
+    signOut(auth);
+  };
+  const handleNewProduct = () => {
+    navigate("/products/new");
+  };
 
   return (
     <div>
-      <p>{`${userData && userData.displayName} 님`}</p>
-      <button onClick={handleGoogleLogin}>Login</button>
+      {userData ? (
+        <div>
+          <button onClick={handleNewProduct}>
+            <BsPencilFill />
+          </button>
+          <p>{`${userData && userData.displayName} 님`}</p>
+          <button onClick={handleGoogleLogOut}>Logout</button>
+        </div>
+      ) : (
+        <button onClick={handleGoogleLogin}>Login</button>
+      )}
     </div>
   );
 }
@@ -39,3 +58,14 @@ export default function Login() {
 //   const credential = GoogleAuthProvider.credentialFromError(error);
 //   // ...
 // });
+
+{
+  /* <div>
+<p>{`${userData && userData.displayName} 님`}</p>
+{userData.operationType === "signIn" ? (
+  <button onClick={handleGoogleLogOut}>Logout</button>
+) : (
+  <button onClick={handleGoogleLogin}>Login</button>
+)}
+</div> */
+}

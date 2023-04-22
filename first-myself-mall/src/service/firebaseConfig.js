@@ -23,9 +23,9 @@ export const auth = getAuth(app);
 // Detect auth state
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
-    console.log("logged in!");
-  } else {
     console.log("No user");
+  } else {
+    console.log("Logged In");
   }
 });
 
