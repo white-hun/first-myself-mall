@@ -6,6 +6,7 @@ import { BsPencilFill } from "react-icons/bs";
 
 export default function Login() {
   const [userData, setUserData] = useState(null);
+  // const { displayName, photoURL } = userData;
   const navigate = useNavigate();
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
@@ -30,6 +31,7 @@ export default function Login() {
           <button onClick={handleNewProduct}>
             <BsPencilFill />
           </button>
+          <img src={userData.photoURL} alt={userData.displayName} />
           <p>{`${userData && userData.displayName} 님`}</p>
           <button onClick={handleGoogleLogOut}>Logout</button>
         </div>
