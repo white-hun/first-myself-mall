@@ -3,13 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Login from "../service/Login";
 import { BsShop } from "react-icons/bs";
 import { GrShop } from "react-icons/gr";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../service/firebaseConfig";
 
 export default function Header() {
   const navigate = useNavigate();
-  const hanbleClick = () => navigate("/product");
-
+  const handleProducts = () => navigate("/product");
+  const handleCart = () => navigate("/carts");
   return (
     <header>
       <Link to="/">
@@ -17,8 +15,8 @@ export default function Header() {
         <p>shoppy</p>
       </Link>
       <div>
-        <button onClick={hanbleClick}>products</button>
-        <button>
+        <button onClick={handleProducts}>products</button>
+        <button onClick={handleCart}>
           <GrShop />
         </button>
         <div>

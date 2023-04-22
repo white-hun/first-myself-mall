@@ -59,14 +59,3 @@ export default function Login() {
 //   const credential = GoogleAuthProvider.credentialFromError(error);
 //   // ...
 // });
-
-{
-  /* <div>
-<p>{`${userData && userData.displayName} 님`}</p>
-{userData.operationType === "signIn" ? (
-  <button onClick={handleGoogleLogOut}>Logout</button>
-) : (
-  <button onClick={handleGoogleLogin}>Login</button>
-)}
-</div> */
-}
