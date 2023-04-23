@@ -1,12 +1,108 @@
 {
   "items": [
     {
-      "kind": "",
-      "id": "",
-      "price": "",
+      "id": "w1",
       "snippet": {
-        "title": "",
-        "description": "",
+        "kind": "여성",
+        "title": "shirt",
+        "price": "150000",
+        "description": "This is a shirt",
+        "imageurl": "/image/1.webp",
+        "size": {
+          "option": {
+            "small": "S",
+            "medium": "M",
+            "large": "L",
+            "xlarge": "XL",
+            "xxlarge": "XXL"
+          }
+        }
+      }
+    },
+    {
+      "id": "w2",
+      "snippet": {
+        "kind": "여성",
+        "title": "mtm",
+        "price": "120000",
+        "description": "This is a mtm",
+        "imageurl": "/image/2.webp",
+        "size": {
+          "option": {
+            "small": "S",
+            "medium": "M",
+            "large": "L",
+            "xlarge": "XL",
+            "xxlarge": "XXL"
+          }
+        }
+      }
+    },
+    {
+      "id": "w3",
+      "snippet": {
+        "kind": "여성",
+        "title": "dress",
+        "price": "170000",
+        "description": "This is a dress",
+        "imageurl": "/image/3.webp",
+        "size": {
+          "option": {
+            "small": "S",
+            "medium": "M",
+            "large": "L",
+            "xlarge": "XL",
+            "xxlarge": "XXL"
+          }
+        }
+      }
+    },
+    {
+      "id": "w4",
+      "snippet": {
+        "kind": "여성",
+        "title": "short pants",
+        "price": "80000",
+        "description": "This is a short pants",
+        "imageurl": "/image/4.webp",
+        "size": {
+          "option": {
+            "small": "S",
+            "medium": "M",
+            "large": "L",
+            "xlarge": "XL",
+            "xxlarge": "XXL"
+          }
+        }
+      }
+    },
+    {
+      "id": "w5",
+      "snippet": {
+        "kind": "여성",
+        "title": "striped shirt",
+        "price": "110000",
+        "description": "This is a striped shirt",
+        "imageurl": "/image/5.webp",
+        "size": {
+          "option": {
+            "small": "S",
+            "medium": "M",
+            "large": "L",
+            "xlarge": "XL",
+            "xxlarge": "XXL"
+          }
+        }
+      }
+    },
+    {
+      "id": "w6",
+      "snippet": {
+        "kind": "여성",
+        "title": "knit dress",
+        "price": "140000",
+        "description": "This is a knit dress",
+        "imageurl": "/image/6.webp",
         "size": {
           "option": {
             "small": "S",

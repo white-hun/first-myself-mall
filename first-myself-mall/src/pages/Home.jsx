@@ -1,11 +1,31 @@
 import React from "react";
 import Banner from "../components/Banner";
+import { useQuery } from "react-query";
+import { useProduct } from "../context/ProductContext";
+import ProductCard from "../components/ProductCard";
 
 export default function Home() {
+  const { product } = useProduct();
+  const { isLoading, error, data: prod } = useQuery(["prod"], () => product.test());
+  //
   return (
     <>
       <Banner />
-      <div>Home</div>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>{error.message}</p>}
+      {prod && (
+        <ul>
+          {prod.map((item) => (
+            <ProductCard key={item.id} product={item} />
+          ))}
+        </ul>
+      )}
     </>
   );
 }
+
+// async () => {
+//   return fetch("/data/products.json")
+//     .then((res) => res.json())
+//     .then((data) => data.items);
+// }
