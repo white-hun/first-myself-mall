@@ -15,7 +15,7 @@ export default function ProductDetail() {
         <h2>{title}</h2>
         <p>{price}</p>
         <p>{description}</p>
-        <label htmlFor="size"></label>
+        <label htmlFor="size">size</label>
         <select id="size">
           <option value="">--pleae choose a size--</option>
           {Object.entries(size.option).map(([key, value]) => (
@@ -24,7 +24,8 @@ export default function ProductDetail() {
             </option>
           ))}
         </select>
-        <button>장바구니에 추가하기</button>
+        <button>장바구니</button>
+        <button>구매하기</button>
       </article>
     </section>
   );
