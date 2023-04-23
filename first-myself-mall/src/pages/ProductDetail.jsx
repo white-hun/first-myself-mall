@@ -18,19 +18,14 @@ export default function ProductDetail() {
         <label htmlFor="size"></label>
         <select id="size">
           <option value="">--pleae choose a size--</option>
-          <option value="">{size.option.small}</option>
-          <option value="">{size.option.medium}</option>
-          <option value="">{size.option.large}</option>
-          <option value="">{size.option.xlarge}</option>
-          <option value="">{size.option.xxlarge}</option>
+          {Object.entries(size.option).map(([key, value]) => (
+            <option key={product.id} value={key}>
+              {value}
+            </option>
+          ))}
         </select>
+        <button>장바구니에 추가하기</button>
       </article>
     </section>
   );
-}
-
-{
-  /* {size.option.map((s) => (
-  <option value={product.id}>{s}</option>
-))} */
 }
