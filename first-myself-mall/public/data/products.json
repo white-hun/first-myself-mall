@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "kind": "",
+      "id": "",
+      "price": "",
+      "snippet": {
+        "title": "",
+        "description": "",
+        "size": {
+          "option": {
+            "small": "S",
+            "medium": "M",
+            "large": "L",
+            "xlarge": "XL",
+            "xxlarge": "XXL"
+          }
+        }
+      }
+    }
+  ]
+}
