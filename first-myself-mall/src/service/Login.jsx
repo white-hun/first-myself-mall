@@ -19,6 +19,7 @@ export default function Login() {
     const auth = getAuth();
     signOut(auth);
     setUserData(null);
+    navigate("/");
   };
   const handleNewProduct = () => {
     navigate("/products/new");
