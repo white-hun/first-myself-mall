@@ -32,18 +32,15 @@
 
 //----------------------------------------------------------------------------------------------------
 import React from "react";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
-import { database } from "../service/firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../service/firebaseConfig";
 
-const docRef = doc(database, "items", "WJbgIOwM9GRUzddXOhUD");
-const docSnap = await getDoc(docRef);
-
-if (docSnap.exists()) {
-  console.log("Document data:", docSnap.data());
-} else {
-  // doc.data() will be undefined in this case
-  console.log("No such document!");
-}
+const querySnapshot = async () => {
+  return await getDocs(collection(db, "board"));
+};
+querySnapshot.forEach((doc) => {
+  console.log(doc.id, " => ", doc.data());
+});
 
 export default function Home() {
   return <div>test</div>;
