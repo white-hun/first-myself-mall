@@ -32,15 +32,15 @@
 
 //----------------------------------------------------------------------------------------------------
 import React from "react";
-import { collection, getDocs } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
-const querySnapshot = async () => {
-  return await getDocs(collection(db, "board"));
-};
-querySnapshot.forEach((doc) => {
-  console.log(doc.id, " => ", doc.data());
-});
+db.collection("board")
+  .get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+    }); // "testcol" 컬렉션내 도큐먼트 조회 후 출력
+  });
 
 export default function Home() {
   return <div>test</div>;

@@ -25,7 +25,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-// Initialize Realtime Database and get a reference to the service
+// Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
 // Detect auth state
