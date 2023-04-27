@@ -1,28 +1,28 @@
-// import React from "react";
-// import Banner from "../components/Banner";
-// import { useQuery } from "react-query";
-// import { useProduct } from "../context/ProductContext";
-// import ProductCard from "../components/ProductCard";
+import React from "react";
+import Banner from "../components/Banner";
+import { useQuery } from "react-query";
+import { useProduct } from "../context/ProductContext";
+import ProductCard from "../components/ProductCard";
 
-// export default function Home() {
-//   const { product } = useProduct();
-//   const { isLoading, error, data: prod } = useQuery(["prod"], () => product.test());
-//   //
-//   return (
-//     <>
-//       <Banner />
-//       {isLoading && <p>Loading...</p>}
-//       {error && <p>{error.message}</p>}
-//       {prod && (
-//         <ul>
-//           {prod.map((item) => (
-//             <ProductCard key={item.id} product={item} />
-//           ))}
-//         </ul>
-//       )}
-//     </>
-//   );
-// }
+export default function Home() {
+  const { product } = useProduct();
+  const { isLoading, error, data: prod } = useQuery(["prod"], () => product.test());
+  //
+  return (
+    <>
+      <Banner />
+      {isLoading && <p>Loading...</p>}
+      {error && <p>{error.message}</p>}
+      {prod && (
+        <ul>
+          {prod.map((item) => (
+            <ProductCard key={item.id} product={item} />
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
 
 // async () => {
 //   return fetch("/data/products.json")
@@ -31,17 +31,20 @@
 // }
 
 //----------------------------------------------------------------------------------------------------
-import React from "react";
-import { db } from "../service/firebaseConfig";
+// import React from "react";
+// import { db } from "../service/firebaseConfig";
+// import { doc, getDoc } from "firebase/firestore";
 
-db.collection("board")
-  .get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      console.log(doc.data());
-    }); // "testcol" 컬렉션내 도큐먼트 조회 후 출력
-  });
+// const docRef = doc(db, "cities", "SF");
+// const docSnap = await getDoc(docRef);
 
-export default function Home() {
-  return <div>test</div>;
-}
+// if (docSnap.exists()) {
+//   console.log("Document data:", docSnap.data());
+// } else {
+//   // doc.data() will be undefined in this case
+//   console.log("No such document!");
+// }
+
+// export default function Home() {
+//   return <div>test</div>;
+// }
