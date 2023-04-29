@@ -13,7 +13,7 @@ export default function NewProduct() {
     });
 
   const handleSubmit = () => {
-    setBoard(title);
+    setBoard();
     console.log(board);
     setTitle("");
   };
@@ -26,21 +26,6 @@ export default function NewProduct() {
     </div>
   );
 }
-
-// const [price, setPrice] = useState("");
-// const [kind, setKind] = useState("");
-// const [description, setDescription] = useState("");
-// const [size, setSize] = useState({ default: {} });
-
-// const handlePrice = (e) => setPrice(e.target.value);
-// const handleKind = (e) => setKind(e.target.value);
-// const handleDescription = (e) => setDescription(e.target.value);
-// const handleSize = (e) => setSize(e.target.value);
-
-// <input type="text" placeholder="가격" onChange={handlePrice} />
-// <input type="text" placeholder="카테고리" onChange={handleKind} />
-// <input type="text" placeholder="제품 설명" onChange={handleDescription} />
-// <input type="text" placeholder="사이즈 옵션" onChange={handleSize} />
 
 //-------------------------------------------------------------------------------------------
 // import { collection, doc, setDoc } from "firebase/firestore";
