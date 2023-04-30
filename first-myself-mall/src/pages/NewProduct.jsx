@@ -12,18 +12,19 @@ export default function NewProduct() {
       name: title,
     });
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setBoard();
     console.log(board);
     setTitle("");
   };
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <h2>새로운 제품 등록</h2>
       <input type="text" placeholder="제품명" onChange={handleTitle} value={title} />
 
-      <button onSubmit={handleSubmit}>제품 등록하기</button>
-    </div>
+      <button>제품 등록하기</button>
+    </form>
   );
 }
 
