@@ -34,7 +34,7 @@ export default function NewProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setBoard();
-    console.log(board);
+    console.log(board?.items);
     setName("");
     setPrice("");
     setKind("");
