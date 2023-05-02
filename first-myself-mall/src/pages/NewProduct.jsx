@@ -4,12 +4,12 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function NewProduct() {
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [kind, setKind] = useState("");
   const [size, setSize] = useState("");
   const [description, setDescription] = useState("");
-  const handleTitle = (e) => setTitle(e.target.value);
+  const handleName = (e) => setName(e.target.value);
   const handlePrice = (e) => setPrice(e.target.value);
   const handleKind = (e) => setKind(e.target.value);
   const handleSize = (e) => setSize(e.target.value);
@@ -17,10 +17,18 @@ export default function NewProduct() {
   const board = collection(db, "board");
   const setBoard = async () =>
     await setDoc(doc(board, "items"), {
-      name: title,
+      name: name,
       price: price,
       category: kind,
-      size: { default: size },
+      size: {
+        default: {
+          small: size[0],
+          medium: size[2],
+          large: size[4],
+          extralarge: size[6],
+          twoetxralarge: size[8],
+        },
+      },
       description: description,
     });
 
@@ -28,7 +36,7 @@ export default function NewProduct() {
     e.preventDefault();
     setBoard();
     console.log(board);
-    setTitle("");
+    setName("");
     setPrice("");
     setKind("");
     setSize("");
@@ -37,7 +45,7 @@ export default function NewProduct() {
   return (
     <form onSubmit={handleSubmit}>
       <h2>새로운 제품 등록</h2>
-      <input type="text" placeholder="제품명" onChange={handleTitle} value={title} />
+      <input type="text" placeholder="제품명" onChange={handleName} value={name} />
       <input type="text" placeholder="가격" onChange={handlePrice} value={price} />
       <input type="text" placeholder="카테고리" onChange={handleKind} value={kind} />
       <input type="text" placeholder="사이즈" onChange={handleSize} value={size} />
