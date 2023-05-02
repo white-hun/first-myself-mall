@@ -1,4 +1,3 @@
-import { getDatabase, set, ref } from "firebase/database";
 import React, { useState } from "react";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
@@ -22,11 +21,11 @@ export default function NewProduct() {
       category: kind,
       size: {
         default: {
-          small: size[0],
-          medium: size[2],
-          large: size[4],
-          extralarge: size[6],
-          twoetxralarge: size[8],
+          small: size.includes("s") === true && "s",
+          medium: size.includes("m") === true && "m",
+          large: size.includes("l") === true && "l",
+          extralarge: size.includes("xl") === true && "xl",
+          twoetxralarge: size.includes("xxl") === true && "xxl",
         },
       },
       description: description,
