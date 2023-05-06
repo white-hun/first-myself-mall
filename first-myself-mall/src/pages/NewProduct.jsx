@@ -14,8 +14,8 @@ export default function NewProduct() {
   const handleSize = (e) => setSize(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
   const board = collection(db, "board");
-  const setBoard = async () => {
-    await addDoc(doc(board, "items"), {
+  const setBoard = async () =>
+    await setDoc(doc(board, "items"), {
       name: name,
       price: price,
       category: kind,
@@ -30,23 +30,6 @@ export default function NewProduct() {
       },
       description: description,
     });
-
-    await updateDoc(doc(board, "items"), {
-      name: name,
-      price: price,
-      category: kind,
-      size: {
-        default: {
-          small: size.includes("s") === true && "s",
-          medium: size.includes("m") === true && "m",
-          large: size.includes("l") === true && "l",
-          extralarge: size.includes("xl") === true && "xl",
-          twoetxralarge: size.includes("xxl") === true && "xxl",
-        },
-      },
-      description: description,
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
