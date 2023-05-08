@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function NewProduct() {

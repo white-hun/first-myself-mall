@@ -65,7 +65,9 @@ export default function Home() {
     error,
     data: prod,
   } = useQuery(["prod"], async () => {
-    return fetch(querySnapshot).then((doc) => doc.data());
+    return fetch(querySnapshot).then((doc) => {
+      console.log(doc);
+    });
   });
   //
   return (
