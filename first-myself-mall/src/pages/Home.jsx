@@ -59,7 +59,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function Home() {
-  const querySnapshot = async () => await getDocs(collection(db, "items"));
+  const querySnapshot = async () => await getDocs(collection(db, "board"));
   const {
     isLoading,
     error,
