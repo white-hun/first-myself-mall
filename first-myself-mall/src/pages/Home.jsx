@@ -1,28 +1,28 @@
-import React from "react";
-import Banner from "../components/Banner";
-import { useQuery } from "react-query";
-import { useProduct } from "../context/ProductContext";
-import ProductCard from "../components/ProductCard";
+// import React from "react";
+// import Banner from "../components/Banner";
+// import { useQuery } from "react-query";
+// import { useProduct } from "../context/ProductContext";
+// import ProductCard from "../components/ProductCard";
 
-export default function Home() {
-  const { product } = useProduct();
-  const { isLoading, error, data: prod } = useQuery(["prod"], () => product.test());
-  //
-  return (
-    <>
-      <Banner />
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error.message}</p>}
-      {prod && (
-        <ul>
-          {prod.map((item) => (
-            <ProductCard key={item.id} product={item} />
-          ))}
-        </ul>
-      )}
-    </>
-  );
-}
+// export default function Home() {
+//   const { product } = useProduct();
+//   const { isLoading, error, data: prod } = useQuery(["prod"], () => product.test());
+//   //
+//   return (
+//     <>
+//       <Banner />
+//       {isLoading && <p>Loading...</p>}
+//       {error && <p>{error.message}</p>}
+//       {prod && (
+//         <ul>
+//           {prod.map((item) => (
+//             <ProductCard key={item.id} product={item} />
+//           ))}
+//         </ul>
+//       )}
+//     </>
+//   );
+// }
 
 // async () => {
 //   return fetch("/data/products.json")
@@ -48,3 +48,38 @@ export default function Home() {
 // export default function Home() {
 //   return <div>test</div>;
 // }
+
+//----------------------------------------------------------------------------------------------------
+
+import React from "react";
+import Banner from "../components/Banner";
+import { useQuery } from "react-query";
+import ProductCard from "../components/ProductCard";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../service/firebaseConfig";
+
+export default function Home() {
+  const querySnapshot = async () => await getDocs(collection(db, "items"));
+  const {
+    isLoading,
+    error,
+    data: prod,
+  } = useQuery(["prod"], async () => {
+    return fetch(querySnapshot).then((doc) => doc.data());
+  });
+  //
+  return (
+    <>
+      <Banner />
+      {isLoading && <p>Loading...</p>}
+      {error && <p>{error.message}</p>}
+      {prod && (
+        <ul>
+          {prod.map((item) => (
+            <ProductCard key={item.id} product={item} />
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
