@@ -19,7 +19,7 @@ export default function ProductDetail() {
         <label htmlFor="size">size</label>
         <select id="size">
           <option value="">--pleae choose a size--</option>
-          {Object.entries(size.option).map(([key, value]) => (
+          {Object.entries(size.default).map(([key, value]) => (
             <option key={product.id} value={key}>
               {value}
             </option>
