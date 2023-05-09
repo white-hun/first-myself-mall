@@ -25,7 +25,7 @@ export default function NewProduct() {
           medium: size.includes("m") === true && "m",
           large: size.includes("l") === true && "l",
           extralarge: size.includes("xl") === true && "xl",
-          twoetxralarge: size.includes("xxl") === true && "xxl",
+          twoextralarge: size.includes("xxl") === true && "xxl",
         },
       },
       description: description,

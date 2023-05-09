@@ -5,14 +5,15 @@ export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
-  const { imageurl, title, price, description, size } = product.snippet;
+  const { imageurl, name, category, price, description, size } = product;
   return (
     <section>
+      {/* <article>
+        <img src={imageurl} alt={name} />
+      </article> */}
       <article>
-        <img src={imageurl} alt={title} />
-      </article>
-      <article>
-        <h2>{title}</h2>
+        <h2>{name}</h2>
+        <p>{category}</p>
         <p>{price}</p>
         <p>{description}</p>
         <label htmlFor="size">size</label>
