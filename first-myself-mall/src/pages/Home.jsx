@@ -51,7 +51,7 @@
 
 //----------------------------------------------------------------------------------------------------
 
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "../components/Banner";
 import { useQuery } from "react-query";
 import ProductCard from "../components/ProductCard";
@@ -59,20 +59,16 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function Home() {
-  const querySnapshot = async () => await getDocs(collection(db, "board"));
-  const {
-    isLoading,
-    error,
-    data: prod,
-  } = useQuery(["prod"], async () => {
-    return fetch(querySnapshot).then((doc) => {
-      console.log(doc);
-    });
-  });
-  //
+  useEffect(() => {
+    const getProd = async () => {
+      const querySnapshot = await getDocs(collection(db, "board"));
+      console.log(querySnapshot.docs);
+    };
+    getProd();
+  }, []);
   return (
     <>
-      <Banner />
+      {/* <Banner />
       {isLoading && <p>Loading...</p>}
       {error && <p>{error.message}</p>}
       {prod && (
@@ -81,7 +77,7 @@ export default function Home() {
             <ProductCard key={item.id} product={item} />
           ))}
         </ul>
-      )}
+      )} */}
     </>
   );
 }
