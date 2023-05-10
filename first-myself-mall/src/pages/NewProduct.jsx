@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function NewProduct() {
@@ -15,7 +15,7 @@ export default function NewProduct() {
   const handleDescription = (e) => setDescription(e.target.value);
   const board = collection(db, "board");
   const setBoard = async () =>
-    await addDoc(doc(board, "items"), {
+    await updateDoc(doc(board, "items"), {
       name: name,
       price: price,
       category: kind,
@@ -34,7 +34,7 @@ export default function NewProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setBoard();
-    console.log(board?.items);
+    console.log(board);
     setName("");
     setPrice("");
     setKind("");
