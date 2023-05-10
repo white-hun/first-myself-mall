@@ -28,14 +28,22 @@ export default function Login() {
   return (
     <div>
       {userData ? (
-        <div>
-          <button onClick={handleNewProduct}>
-            <BsPencilFill />
-          </button>
-          <img src={userData.photoURL} alt={userData.displayName} />
-          <p>{`${userData && userData.displayName} 님`}</p>
-          <button onClick={handleGoogleLogOut}>Logout</button>
-        </div>
+        userData.email === "whiteforcoding@gmail.com" ? (
+          <div>
+            <button onClick={handleNewProduct}>
+              <BsPencilFill />
+            </button>
+            <img src={userData.photoURL} alt={userData.displayName} />
+            <p>{`${userData && userData.displayName} 님`}</p>
+            <button onClick={handleGoogleLogOut}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <img src={userData.photoURL} alt={userData.displayName} />
+            <p>{`${userData && userData.displayName} 님`}</p>
+            <button onClick={handleGoogleLogOut}>Logout</button>
+          </div>
+        )
       ) : (
         <button onClick={handleGoogleLogin}>Login</button>
       )}
@@ -62,3 +70,56 @@ export default function Login() {
 //   const credential = GoogleAuthProvider.credentialFromError(error);
 //   // ...
 // });
+
+//userData.email === "whiteforcoding@gmail.com"
+
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { auth } from "../service/firebaseConfig";
+// import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+// import { BsPencilFill } from "react-icons/bs";
+
+// export default function Login() {
+//   const [userData, setUserData] = useState(null);
+//   // const { displayName, photoURL } = userData;
+//   const navigate = useNavigate();
+//   const handleGoogleLogin = () => {
+//     const provider = new GoogleAuthProvider();
+//     signInWithPopup(auth, provider).then((data) => {
+//       setUserData(data.user);
+//       console.log(data);
+//     });
+//   };
+//   const handleGoogleLogOut = () => {
+//     const auth = getAuth();
+//     signOut(auth);
+//     setUserData(null);
+//     navigate("/");
+//   };
+//   const handleNewProduct = () => {
+//     navigate("/products/new");
+//   };
+
+//   return (
+//     <div>
+//       {userData.email === "whiteforcoding@gmail.com" ? (
+//         <div>
+//           <button onClick={handleNewProduct}>
+//             <BsPencilFill />
+//           </button>
+//           <img src={userData.photoURL} alt={userData.displayName} />
+//           <p>{`${userData && userData.displayName} 님`}</p>
+//           <button onClick={handleGoogleLogOut}>Logout</button>
+//         </div>
+//       ) : <button onClick={handleGoogleLogin}>Login</button> || userData.email ? (
+//         <div>
+//           <img src={userData.photoURL} alt={userData.displayName} />
+//           <p>{`${userData && userData.displayName} 님`}</p>
+//           <button onClick={handleGoogleLogOut}>Logout</button>
+//         </div>
+//       ) : (
+//         <button onClick={handleGoogleLogin}>Login</button>
+//       )}
+//     </div>
+//   );
+// }
