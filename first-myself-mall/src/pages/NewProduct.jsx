@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function NewProduct() {
@@ -15,21 +15,25 @@ export default function NewProduct() {
   const handleDescription = (e) => setDescription(e.target.value);
   const board = collection(db, "board");
   const setBoard = async () =>
-    await updateDoc(doc(board, "items"), {
-      name: name,
-      price: price,
-      category: kind,
-      size: {
-        default: {
-          small: size.includes("s") === true && "s",
-          medium: size.includes("m") === true && "m",
-          large: size.includes("l") === true && "l",
-          extralarge: size.includes("xl") === true && "xl",
-          twoextralarge: size.includes("xxl") === true && "xxl",
+    await setDoc(
+      doc(board, "items"),
+      {
+        name: name,
+        price: price,
+        category: kind,
+        size: {
+          default: {
+            small: size.includes("s") === true && "s",
+            medium: size.includes("m") === true && "m",
+            large: size.includes("l") === true && "l",
+            extralarge: size.includes("xl") === true && "xl",
+            doubleextralarge: size.includes("xxl") === true && "xxl",
+          },
         },
+        description: description,
       },
-      description: description,
-    });
+      { merge: true }
+    );
 
   const handleSubmit = (e) => {
     e.preventDefault();
