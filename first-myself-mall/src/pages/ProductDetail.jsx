@@ -19,7 +19,7 @@ export default function ProductDetail() {
         price: price,
         category: category,
         quantity: quantity,
-        // size: , // size중 선택한 옵션
+        size: selected, // size중 선택한 옵션
         description: description,
       },
       { merge: true }
@@ -28,9 +28,8 @@ export default function ProductDetail() {
     e.preventDefault();
     setBoard();
     setQuantity();
-    console.log(size);
+    console.log(selected);
   };
-
   const handleMinus = () => {
     setQuantity(quantity - 1);
   };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
+import { v4 as uuidv4 } from "uuid";
 
 export default function NewProduct() {
   const [name, setName] = useState("");
@@ -18,6 +19,7 @@ export default function NewProduct() {
     await setDoc(
       doc(board, "items"),
       {
+        id: uuidv4(),
         name: name,
         price: price,
         category: category,

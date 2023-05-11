@@ -98,7 +98,7 @@ export default function Home() {
   useEffect(() => {
     const getProd = async () => {
       const querySnapshot = await getDocs(collection(db, "board"));
-      setProd(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setProd(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
     };
     getProd();
   }, []);
