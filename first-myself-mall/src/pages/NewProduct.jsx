@@ -5,12 +5,12 @@ import { db } from "../service/firebaseConfig";
 export default function NewProduct() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [kind, setKind] = useState("");
+  const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
   const [description, setDescription] = useState("");
   const handleName = (e) => setName(e.target.value);
   const handlePrice = (e) => setPrice(e.target.value);
-  const handleKind = (e) => setKind(e.target.value);
+  const handleCategory = (e) => setCategory(e.target.value);
   const handleSize = (e) => setSize(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
   const board = collection(db, "board");
@@ -20,7 +20,7 @@ export default function NewProduct() {
       {
         name: name,
         price: price,
-        category: kind,
+        category: category,
         size: {
           default: {
             small: size.includes("s") === true && "s",
@@ -41,7 +41,7 @@ export default function NewProduct() {
     console.log(board);
     setName("");
     setPrice("");
-    setKind("");
+    setCategory("");
     setSize("");
     setDescription("");
   };
@@ -50,7 +50,7 @@ export default function NewProduct() {
       <h2>새로운 제품 등록</h2>
       <input type="text" placeholder="제품명" onChange={handleName} value={name} />
       <input type="text" placeholder="가격" onChange={handlePrice} value={price} />
-      <input type="text" placeholder="카테고리" onChange={handleKind} value={kind} />
+      <input type="text" placeholder="카테고리" onChange={handleCategory} value={category} />
       <input type="text" placeholder="사이즈" onChange={handleSize} value={size} />
       <input type="text" placeholder="제품설명" onChange={handleDescription} value={description} />
       <button>제품 등록하기</button>

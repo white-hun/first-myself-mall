@@ -1,11 +1,43 @@
-import React from "react";
+import { collection, doc, setDoc } from "firebase/firestore";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { db } from "../service/firebaseConfig";
 
 export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
   const { imageurl, name, category, price, description, size } = product;
+  const [quantity, setQuantity] = useState(1);
+  const [selected, setSelected] = useState("");
+  const board = collection(db, "board");
+  const setBoard = async () =>
+    await setDoc(
+      doc(board, "basket"),
+      {
+        name: name,
+        price: price,
+        category: category,
+        quantity: quantity,
+        // size: , // size중 선택한 옵션
+        description: description,
+      },
+      { merge: true }
+    );
+  const handleBasket = (e) => {
+    e.preventDefault();
+    setBoard();
+    setQuantity();
+    console.log(size);
+  };
+
+  const handleMinus = () => {
+    setQuantity(quantity - 1);
+  };
+  const handlePlus = () => {
+    setQuantity(quantity + 1);
+  };
+  const handleSelect = (e) => setSelected(e.target.value);
   return (
     <section>
       {/* <article>
@@ -14,10 +46,15 @@ export default function ProductDetail() {
       <article>
         <h2>{name}</h2>
         <p>{category}</p>
-        <p>{price}</p>
+        <p>{price * quantity}</p>
         <p>{description}</p>
         <label htmlFor="size">size</label>
-        <select id="size">
+        <div>
+          {quantity >= 2 ? <button onClick={handleMinus}>-</button> : <button disabled>-</button>}
+          <p>{quantity}</p>
+          <button onClick={handlePlus}>+</button>
+        </div>
+        <select id="size" onChange={handleSelect} value={selected}>
           <option value="">--pleae choose a size--</option>
           {Object.entries(size.default).map(([key, value]) => (
             <option key={product.id} value={key}>
@@ -25,7 +62,7 @@ export default function ProductDetail() {
             </option>
           ))}
         </select>
-        <button>장바구니</button>
+        <button onClick={handleBasket}>장바구니</button>
         <button>구매하기</button>
       </article>
     </section>
