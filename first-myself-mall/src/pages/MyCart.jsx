@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import CartProduct from "../components/CartProduct";
-import { collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function MyCart() {
   const [cartProd, setCartProd] = useState([]);
   useEffect(() => {
     const getProd = async () => {
-      const querySnapshot = await getDocs(collection(db, "board", "basket"));
-      setCartProd(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+      const querySnapshot = await getDoc(doc(db, "board", "basket"));
+      // if (querySnapshot.exists()) {
+      //   console.log("Document data:", querySnapshot.data());
+      // } else {
+      //   // querySnapshot.data() will be undefined in this case
+      //   console.log("No such document!");
+      // }
+      setCartProd(querySnapshot.data());
+      console.log(querySnapshot);
+      // setProd(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
     };
     getProd();
   }, []);
@@ -18,7 +26,7 @@ export default function MyCart() {
       {console.log(cartProd)}
       {cartProd && (
         <ul>
-          {cartProd.map((item) => (
+          {Array(cartProd).map((item) => (
             <CartProduct key={item.id} product={item} />
           ))}
         </ul>

@@ -8,6 +8,8 @@ export default function CartProduct({ product }) {
       <p>{name}</p>
       <div>{price}</div>
       <div>{category}</div>
+      <div>{size}</div>
+      <div>{quantity}</div>
     </div>
   );
 }

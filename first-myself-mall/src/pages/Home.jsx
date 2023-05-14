@@ -90,15 +90,23 @@ import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import { useQuery } from "react-query";
 import ProductCard from "../components/ProductCard";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function Home() {
   const [prod, setProd] = useState([]);
   useEffect(() => {
     const getProd = async () => {
-      const querySnapshot = await getDocs(collection(db, "board"));
-      setProd(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+      const querySnapshot = await getDoc(doc(db, "board", "items"));
+      // if (querySnapshot.exists()) {
+      //   console.log("Document data:", querySnapshot.data());
+      // } else {
+      //   // querySnapshot.data() will be undefined in this case
+      //   console.log("No such document!");
+      // }
+      setProd(querySnapshot.data());
+      console.log(querySnapshot);
+      // setProd(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
     };
     getProd();
   }, []);
@@ -107,12 +115,11 @@ export default function Home() {
     <>
       <Banner />
       {/* {isLoading && <p>Loading...</p>}
-      {error && <p>{error.message}</p>}
-      {console.log(prod)}; */}
+      {error && <p>{error.message}</p>} */}
       {console.log(prod)}
       {prod && (
         <ul>
-          {prod.map((item) => (
+          {Array(prod).map((item) => (
             <ProductCard key={item.id} product={item} />
           ))}
         </ul>

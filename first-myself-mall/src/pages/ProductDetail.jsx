@@ -2,6 +2,7 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { db } from "../service/firebaseConfig";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProductDetail() {
   const {
@@ -9,14 +10,15 @@ export default function ProductDetail() {
   } = useLocation();
   const { imageurl, name, category, price, description, size } = product;
   const [quantity, setQuantity] = useState(1);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState();
   const board = collection(db, "board");
   const setBoard = async () =>
     await setDoc(
       doc(board, "basket"),
       {
+        id: uuidv4(),
         name: name,
-        price: price,
+        price: price * quantity,
         category: category,
         quantity: quantity,
         size: selected, // size중 선택한 옵션
@@ -28,6 +30,7 @@ export default function ProductDetail() {
     e.preventDefault();
     setBoard();
     setQuantity();
+    setSelected("");
     console.log(selected);
   };
   const handleMinus = () => {
@@ -61,7 +64,9 @@ export default function ProductDetail() {
             </option>
           ))}
         </select>
-        <button onClick={handleBasket}>장바구니</button>
+        <form onSubmit={handleBasket}>
+          <button>장바구니</button>
+        </form>
         <button>구매하기</button>
       </article>
     </section>
