@@ -1,8 +1,9 @@
 import { collection, doc, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { db } from "../service/firebaseConfig";
+import { auth, db } from "../service/firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function ProductDetail() {
   const {
@@ -26,20 +27,31 @@ export default function ProductDetail() {
       },
       { merge: true }
     );
-  const handleBasket = (e) => {
-    e.preventDefault();
+
+  const handleBasketFunction = () => {
     setBoard();
     setQuantity();
     setSelected("");
     console.log(selected);
   };
+
+  const handleBasket = (e) => {
+    onAuthStateChanged(auth, (user) => {
+      user != null ? handleBasketFunction() : alert("로그인 해주세요");
+    });
+    e.preventDefault();
+  };
+
   const handleMinus = () => {
     setQuantity(quantity - 1);
   };
+
   const handlePlus = () => {
     setQuantity(quantity + 1);
   };
+
   const handleSelect = (e) => setSelected(e.target.value);
+
   return (
     <section>
       {/* <article>
@@ -59,7 +71,7 @@ export default function ProductDetail() {
         <select id="size" onChange={handleSelect} value={selected}>
           <option value="">--pleae choose a size--</option>
           {Object.entries(size.default).map(([key, value]) => (
-            <option key={product.id} value={key}>
+            <option key={product.id} value={value}>
               {value}
             </option>
           ))}
