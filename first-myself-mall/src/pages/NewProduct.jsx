@@ -50,6 +50,7 @@ export default function NewProduct() {
   return (
     <form onSubmit={handleSubmit}>
       <h2>새로운 제품 등록</h2>
+      <input type="file" />
       <input type="text" placeholder="제품명" onChange={handleName} value={name} />
       <input type="text" placeholder="가격" onChange={handlePrice} value={price} />
       <input type="text" placeholder="카테고리" onChange={handleCategory} value={category} />
