@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-const Upload = () => {
+export default function Upload({ parentFunction }) {
   const [uploadFile, setUploadFile] = useState("");
   const [cloudinaryImage, setCloudinaryImage] = useState("");
 
@@ -25,6 +25,8 @@ const Upload = () => {
       });
   };
 
+  // parentFunction(cloudinaryImage);
+
   return (
     <div>
       <section>
@@ -43,6 +45,4 @@ const Upload = () => {
       {console.log(cloudinaryImage)}
     </div>
   );
-};
-
-export default Upload;
+}

@@ -3,6 +3,7 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import Upload from "../service/Upload";
+// import parentFunction from "../service/Upload";
 
 export default function NewProduct() {
   const [name, setName] = useState("");
