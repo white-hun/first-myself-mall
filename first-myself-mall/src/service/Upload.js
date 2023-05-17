@@ -40,6 +40,7 @@ const Upload = () => {
         <p>The resulting Image</p>
         <div>{cloudinaryImage && <img src={cloudinaryImage} alt="" />}</div>
       </section>
+      {console.log(cloudinaryImage)}
     </div>
   );
 };

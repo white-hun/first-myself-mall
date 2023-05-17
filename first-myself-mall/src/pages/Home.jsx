@@ -88,9 +88,8 @@
 
 import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
-import { useQuery } from "react-query";
 import ProductCard from "../components/ProductCard";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function Home() {
