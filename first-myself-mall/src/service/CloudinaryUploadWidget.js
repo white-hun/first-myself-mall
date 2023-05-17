@@ -1,38 +1,22 @@
-import React, { Component } from "react";
+// import { useEffect, useRef } from "react";
 
-class CloudinaryUploadWidget extends Component {
-  componentDidMount() {
-    const cloudName = process.env.CLOUDINARY_CLOUD_NAME; // replace with your own cloud name
-    const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET; // replace with your own upload preset
+// const UploadWidget = () => {
+//   const cloudinaryRef = useRef();
+//   const widgetRef = useRef();
+//   useEffect(() => {
+//     cloudinaryRef.current = window.cloudinary;
+//     widgetRef.current = cloudinaryRef.current.openUploadWidget(
+//       {
+//         cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+//         uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET,
+//       },
+//       function (error, result) {
+//         console.log(result);
+//       }
+//     );
+//   }, []);
 
-    var myWidget = window.cloudinary.createUploadWidget(
-      {
-        cloudName: cloudName,
-        uploadPreset: uploadPreset,
-      },
-      (error, result) => {
-        if (!error && result && result.event === "success") {
-          console.log("Done! Here is the image info: ", result.info);
-          document.getElementById("uploadedimage").setAttribute("src", result.info.secure_url);
-        }
-      }
-    );
-    document.getElementById("upload_widget").addEventListener(
-      "click",
-      function () {
-        myWidget.open();
-      },
-      false
-    );
-  }
+//   return <button onClick={() => widgetRef.current.open()}>Upload</button>;
+// };
 
-  render() {
-    return (
-      <button id="upload_widget" className="cloudinary-button">
-        Upload
-      </button>
-    );
-  }
-}
-
-export default CloudinaryUploadWidget;
+// export default UploadWidget;

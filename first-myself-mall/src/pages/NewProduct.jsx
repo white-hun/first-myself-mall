@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
-import CloudinaryUploadWidget from "../service/CloudinaryUploadWidget";
+import Upload from "../service/Upload";
 
 export default function NewProduct() {
   const [name, setName] = useState("");
@@ -51,7 +51,7 @@ export default function NewProduct() {
   return (
     <form onSubmit={handleSubmit}>
       <h2>새로운 제품 등록</h2>
-      <CloudinaryUploadWidget />
+      <Upload />
       <input type="text" placeholder="제품명" onChange={handleName} value={name} />
       <input type="text" placeholder="가격" onChange={handlePrice} value={price} />
       <input type="text" placeholder="카테고리" onChange={handleCategory} value={category} />
