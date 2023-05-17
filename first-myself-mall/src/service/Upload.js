@@ -5,6 +5,8 @@ const Upload = () => {
   const [uploadFile, setUploadFile] = useState("");
   const [cloudinaryImage, setCloudinaryImage] = useState("");
 
+  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+
   const handleChange = (e) => setUploadFile(e.target.files[0]);
   const handleUpload = (e) => {
     e.preventDefault();
@@ -12,10 +14,7 @@ const Upload = () => {
     formData.append("file", uploadFile);
     formData.append("upload_preset", "your upload preset name");
 
-    Axios.post(
-      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
-      formData
-    )
+    Axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData)
       .then((response) => {
         console.log(response);
         setCloudinaryImage(response.data.secure_url);
