@@ -56,6 +56,7 @@ export default function NewProduct() {
     setCategory("");
     setSize("");
     setDescription("");
+    setImageUrl();
   };
 
   return (
