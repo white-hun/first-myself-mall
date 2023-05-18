@@ -25,7 +25,7 @@ export default function Upload({ parentFunction }) {
       });
   };
 
-  // parentFunction(cloudinaryImage);
+  parentFunction(cloudinaryImage);
 
   return (
     <div>
@@ -42,7 +42,7 @@ export default function Upload({ parentFunction }) {
         <p>The resulting Image</p>
         <div>{cloudinaryImage && <img src={cloudinaryImage} alt="" />}</div>
       </section>
-      {console.log(cloudinaryImage)}
+      {/* {console.log(cloudinaryImage)} */}
     </div>
   );
 }

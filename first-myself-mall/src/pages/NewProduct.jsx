@@ -3,7 +3,6 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import Upload from "../service/Upload";
-// import parentFunction from "../service/Upload";
 
 export default function NewProduct() {
   const [name, setName] = useState("");
@@ -11,17 +10,26 @@ export default function NewProduct() {
   const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState();
+
   const handleName = (e) => setName(e.target.value);
   const handlePrice = (e) => setPrice(e.target.value);
   const handleCategory = (e) => setCategory(e.target.value);
   const handleSize = (e) => setSize(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
+
+  const parentFunction = (x) => {
+    setImageUrl(x);
+    console.log(imageUrl, "test");
+  };
+
   const board = collection(db, "board");
   const setBoard = async () =>
     await setDoc(
       doc(board, "items"),
       {
         id: uuidv4(),
+        imageUrl: imageUrl,
         name: name,
         price: price,
         category: category,
@@ -49,10 +57,11 @@ export default function NewProduct() {
     setSize("");
     setDescription("");
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>새로운 제품 등록</h2>
-      <Upload />
+      <Upload parentFunction={parentFunction} />
       <input type="text" placeholder="제품명" onChange={handleName} value={name} />
       <input type="text" placeholder="가격" onChange={handlePrice} value={price} />
       <input type="text" placeholder="카테고리" onChange={handleCategory} value={category} />

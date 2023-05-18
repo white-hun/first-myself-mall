@@ -1,10 +1,10 @@
 import React from "react";
 
 export default function CartProduct({ product }) {
-  const { name, price, category, size, quantity, imageurl } = product;
+  const { name, price, category, size, quantity, imageUrl } = product;
   return (
     <div>
-      {/* <img src={imageurl} alt={name} /> */}
+      {/* <img src={imageUrl} alt={name} /> */}
       <p>{name}</p>
       <div>{price}</div>
       <div>{category}</div>
