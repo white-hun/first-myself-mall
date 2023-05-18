@@ -86,35 +86,70 @@
 
 //----------------------------------------------------------------------------------------------------
 
+// import React, { useEffect, useState } from "react";
+// import Banner from "../components/Banner";
+// import ProductCard from "../components/ProductCard";
+// import { doc, getDoc } from "firebase/firestore";
+// import { db } from "../service/firebaseConfig";
+
+// export default function Home() {
+//   const [prod, setProd] = useState([]);
+//   useEffect(() => {
+//     const getProd = async () => {
+//       const querySnapshot = await getDoc(doc(db, "board", "boardItems", "items"));
+//       // if (querySnapshot.exists()) {
+//       //   console.log("Document data:", querySnapshot.data());
+//       // } else {
+//       //   // querySnapshot.data() will be undefined in this case
+//       //   console.log("No such document!");
+//       // }
+//       setProd(querySnapshot.data());
+//       console.log(querySnapshot);
+//       // setProd(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+//     };
+//     getProd();
+//   }, []);
+
+//   return (
+//     <>
+//       <Banner />
+//       {/* {isLoading && <p>Loading...</p>}
+//       {error && <p>{error.message}</p>} */}
+//       {console.log(prod)}
+//       {prod && (
+//         <ul>
+//           {Array(prod).map((item) => (
+//             <ProductCard key={item.id} product={item} />
+//           ))}
+//         </ul>
+//       )}
+//     </>
+//   );
+// }
+
+//----------------------------------------------------------------------------------------------------
+
 import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import ProductCard from "../components/ProductCard";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function Home() {
   const [prod, setProd] = useState([]);
   useEffect(() => {
-    const getProd = async () => {
-      const querySnapshot = await getDoc(doc(db, "board", "items"));
-      // if (querySnapshot.exists()) {
-      //   console.log("Document data:", querySnapshot.data());
-      // } else {
-      //   // querySnapshot.data() will be undefined in this case
-      //   console.log("No such document!");
-      // }
-      setProd(querySnapshot.data());
+    const q = query(collection(db, "boardItems"));
+    getDocs(q).then((querySnapshot) => {
       console.log(querySnapshot);
-      // setProd(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
-    };
-    getProd();
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+      });
+    });
   }, []);
 
   return (
     <>
-      <Banner />
-      {/* {isLoading && <p>Loading...</p>}
-      {error && <p>{error.message}</p>} */}
+      {/* <Banner />
       {console.log(prod)}
       {prod && (
         <ul>
@@ -122,7 +157,8 @@ export default function Home() {
             <ProductCard key={item.id} product={item} />
           ))}
         </ul>
-      )}
+      )} */}
+      {/* {console.log(prod)} */}
     </>
   );
 }

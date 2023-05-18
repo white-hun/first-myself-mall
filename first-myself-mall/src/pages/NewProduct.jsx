@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import Upload from "../service/Upload";
@@ -23,10 +23,11 @@ export default function NewProduct() {
     console.log(imageUrl, "test");
   };
 
-  const board = collection(db, "board");
+  const board = collection(db, "board", "boardItems", "items");
+
   const setBoard = async () =>
-    await setDoc(
-      doc(board, "items"),
+    await addDoc(
+      board,
       {
         id: uuidv4(),
         imageUrl: imageUrl,
@@ -56,7 +57,7 @@ export default function NewProduct() {
     setCategory("");
     setSize("");
     setDescription("");
-    setImageUrl();
+    setImageUrl("");
   };
 
   return (
