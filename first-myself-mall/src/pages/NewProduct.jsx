@@ -35,11 +35,11 @@ export default function NewProduct() {
         category: category,
         size: {
           default: {
-            small: size.includes("s") === true && "s",
-            medium: size.includes("m") === true && "m",
-            large: size.includes("l") === true && "l",
-            extralarge: size.includes("xl") === true && "xl",
-            doubleextralarge: size.includes("xxl") === true && "xxl",
+            small: size.includes("s") === true && "S",
+            medium: size.includes("m") === true && "M",
+            large: size.includes("l") === true && "L",
+            extralarge: size.includes("xl") === true && "XL",
+            doubleextralarge: size.includes("xxl") === true && "XXL",
           },
         },
         description: description,
