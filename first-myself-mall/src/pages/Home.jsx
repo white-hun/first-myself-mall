@@ -159,7 +159,7 @@ export default function Home() {
           ))}
         </ul>
       )}
-      {/* {console.log(prod)} */}
+      {console.log(prod)}
     </>
   );
 }
