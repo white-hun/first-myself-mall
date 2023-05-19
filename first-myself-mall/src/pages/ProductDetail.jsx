@@ -9,15 +9,17 @@ export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
-  const { imageurl, name, category, price, description, size } = product;
+  const { imageUrl, name, category, price, description, size } = product;
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState();
-  const board = collection(db, "board");
+
+  const board = collection(db, "board", "basket", "basketItems");
   const setBoard = async () =>
     await setDoc(
       doc(board, "basket"),
       {
         id: uuidv4(),
+        imageUrl: imageUrl,
         name: name,
         price: price * quantity,
         category: category,
@@ -30,7 +32,7 @@ export default function ProductDetail() {
 
   const handleBasketFunction = () => {
     setBoard();
-    setQuantity();
+    setQuantity(1);
     setSelected("");
     console.log(selected);
   };
@@ -54,9 +56,9 @@ export default function ProductDetail() {
 
   return (
     <section>
-      {/* <article>
-        <img src={imageurl} alt={name} />
-      </article> */}
+      <article>
+        <img src={imageUrl} alt={name} />
+      </article>
       <article>
         <h2>{name}</h2>
         <p>{category}</p>

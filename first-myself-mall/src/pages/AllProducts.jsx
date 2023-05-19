@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../service/firebaseConfig";
 
 export default function AllProducts() {
   const [prod, setProd] = useState([]);
   useEffect(() => {
     const getProd = async () => {
-      const querySnapshot = await getDoc(doc(db, "board", "items"));
-
-      setProd(querySnapshot.data());
-      console.log(querySnapshot);
-      // setProd(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+      const q = query(collection(db, "board", "boardItems", "items"));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const docProd = { ...doc.data() };
+        setProd((product) => [...product, docProd]);
+      });
     };
     getProd();
   }, []);
@@ -20,7 +21,7 @@ export default function AllProducts() {
     <>
       {prod && (
         <ul>
-          {Array(prod).map((item) => (
+          {prod.map((item) => (
             <ProductCard key={item.id} product={item} />
           ))}
         </ul>

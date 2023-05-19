@@ -10,7 +10,7 @@ export default function NewProduct() {
   const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
   const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleName = (e) => setName(e.target.value);
   const handlePrice = (e) => setPrice(e.target.value);
@@ -24,7 +24,6 @@ export default function NewProduct() {
   };
 
   const board = collection(db, "board", "boardItems", "items");
-
   const setBoard = async () =>
     await addDoc(
       board,
