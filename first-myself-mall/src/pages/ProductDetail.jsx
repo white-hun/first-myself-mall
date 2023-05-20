@@ -10,6 +10,7 @@ export default function ProductDetail() {
     state: { product },
   } = useLocation();
   const { imageUrl, name, category, price, description, size } = product;
+  // const [ small, medium, large, extralarge, doubleextralarge ] = size.default;
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState();
 
@@ -72,11 +73,16 @@ export default function ProductDetail() {
         </div>
         <select id="size" onChange={handleSelect} value={selected}>
           <option value="">--pleae choose a size--</option>
-          {Object.entries(size.default).map(([key, value]) => (
+          <option value="">{size.default.small}</option>
+          <option value="">{size.default.medium}</option>
+          <option value="">{size.default.large}</option>
+          <option value="">{size.default.extralarge}</option>
+          <option value="">{size.default.doubleextralarge}</option>
+          {/* {Object.entries(size.default).map(([key, value]) => (
             <option key={product.id} value={value}>
               {value}
             </option>
-          ))}
+          ))} */}
         </select>
         <form onSubmit={handleBasket}>
           <button>장바구니</button>

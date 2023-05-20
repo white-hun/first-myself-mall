@@ -20,7 +20,7 @@ export default function NewProduct() {
 
   const parentFunction = (x) => {
     setImageUrl(x);
-    console.log(imageUrl, "test");
+    // console.log(imageUrl);
   };
 
   const board = collection(db, "board", "boardItems", "items");
@@ -63,11 +63,23 @@ export default function NewProduct() {
     <form onSubmit={handleSubmit}>
       <h2>새로운 제품 등록</h2>
       <Upload parentFunction={parentFunction} />
-      <input type="text" placeholder="제품명" onChange={handleName} value={name} />
-      <input type="text" placeholder="가격" onChange={handlePrice} value={price} />
-      <input type="text" placeholder="카테고리" onChange={handleCategory} value={category} />
-      <input type="text" placeholder="사이즈" onChange={handleSize} value={size} />
-      <input type="text" placeholder="제품설명" onChange={handleDescription} value={description} />
+      <input type="text" placeholder="제품명" onChange={handleName} value={name} required />
+      <input type="text" placeholder="가격" onChange={handlePrice} value={price} required />
+      <input
+        type="text"
+        placeholder="카테고리"
+        onChange={handleCategory}
+        value={category}
+        required
+      />
+      <input type="text" placeholder="사이즈" onChange={handleSize} value={size} required />
+      <input
+        type="text"
+        placeholder="제품설명"
+        onChange={handleDescription}
+        value={description}
+        required
+      />
       <button>제품 등록하기</button>
     </form>
   );
