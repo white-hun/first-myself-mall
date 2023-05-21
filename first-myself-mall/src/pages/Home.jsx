@@ -153,7 +153,7 @@ export default function Home() {
     <>
       <Banner />
       {prod && (
-        <ul>
+        <ul className="grid grid-cols-1 sm:grid-cols-5 m-3">
           {prod.map((item) => (
             <ProductCard key={item.id} product={item} />
           ))}

@@ -57,11 +57,11 @@ export default function ProductDetail() {
 
   return (
     <section>
-      <article>
+      <article className="w-80">
         <img src={imageUrl} alt={name} />
       </article>
       <article>
-        <h2>{name}</h2>
+        <h2 className="font-semibold">{name}</h2>
         <p>{category}</p>
         <p>{price * quantity}</p>
         <p>{description}</p>

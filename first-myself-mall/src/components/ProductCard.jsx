@@ -6,11 +6,11 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
   const handleClick = () => navigate(`/products/${product.id}`, { state: { product } });
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} className="w-80">
       <img src={imageUrl} alt={name} />
-      <p>{name}</p>
-      <div>{price}</div>
-      <div>{category}</div>
+      <p className="font-semibold">{name}</p>
+      <div>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
+      <div className="font-">{category}</div>
     </div>
   );
 }
