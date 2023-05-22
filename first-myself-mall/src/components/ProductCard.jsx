@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
     <div onClick={handleClick} className="w-80">
       <img src={imageUrl} alt={name} />
       <p className="font-semibold">{name}</p>
-      <div>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
+      <div>{price}</div>
       <div className="font-">{category}</div>
     </div>
   );
