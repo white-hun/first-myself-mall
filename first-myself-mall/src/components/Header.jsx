@@ -14,12 +14,12 @@ export default function Header() {
       user != null ? navigate("/carts") : alert("로그인 해주세요.");
     });
   return (
-    <header className="w-full flex p-4 pb-10 space-x-80 text-2xl">
+    <header className="w-full flex p-4 pb-10 text-2xl justify-between">
       <Link to="/" className="flex items-center">
         <BsShop />
         <p className="ml-2">shoppy</p>
       </Link>
-      <div className="flex">
+      <div className="flex space-x-5">
         <button onClick={handleProducts}>products</button>
         <button onClick={handleCart}>
           <GrShop />
