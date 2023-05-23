@@ -67,7 +67,7 @@ export default function ProductDetail() {
       <article className="w-10/12 my-24 mx-10">
         <div className="flex items-end border-b border-gray-300">
           <h2 className="font-semibold py-4 text-4xl mr-5">{name}</h2>
-          <p className="my-4 text-gray-300">{category}</p>
+          <p className="my-4 text-gray-300 text-xl">{category}</p>
         </div>
         <p className="py-7 border-b border-gray-300">
           {(price * quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
@@ -78,7 +78,7 @@ export default function ProductDetail() {
           id="size"
           onChange={handleSelect}
           value={selected}
-          className="border-solid border-2 border-gray-300 rounded-md my-7 py-3 focus:outline-none hover:border-gray-700"
+          className="border-solid border-2 border-gray-300 rounded-md my-7 py-2 focus:outline-none hover:border-gray-700"
         >
           <option value="">-- please choose a size --</option>
           <option value={size.default.small}>{size.default.small}</option>
