@@ -7,11 +7,15 @@ export default function ProductCard({ product }) {
   const handleClick = () => navigate(`/products/${product.id}`, { state: { product } });
 
   return (
-    <div onClick={handleClick} className="w-64">
-      <img src={imageUrl} alt={name} className="rounded-md" />
-      <p className="font-semibold">{name}</p>
-      <div>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
-      <div>{category}</div>
+    <div onClick={handleClick} className="w-64 mb-3">
+      <img src={imageUrl} alt={name} className="rounded-md mb-2" />
+      <div className="mx-1">
+        <div className="flex justify-between items-center">
+          <p className="text-lg font-semibold">{name}</p>
+          <div className="text-gray-400">{category}</div>
+        </div>
+        <div>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
+      </div>
     </div>
   );
 }

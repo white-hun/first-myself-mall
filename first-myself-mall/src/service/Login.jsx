@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../service/firebaseConfig";
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import { BsPencilFill } from "react-icons/bs";
+import { GrShop } from "react-icons/gr";
 
 export default function Login() {
   const [userData, setUserData] = useState(null);
@@ -15,6 +22,12 @@ export default function Login() {
       console.log(data);
     });
   };
+  //
+
+  const handleCart = () =>
+    onAuthStateChanged(auth, (user) => {
+      user != null ? navigate("/carts") : alert("로그인 해주세요.");
+    });
   const handleGoogleLogOut = () => {
     const auth = getAuth();
     signOut(auth);
@@ -39,21 +52,20 @@ export default function Login() {
               className="w-9 ml-4 mr-2 rounded-full"
             />
             <p className="mr-4">{`${userData && userData.displayName} 님`}</p>
-            <button onClick={handleGoogleLogOut} className="ml-4">
-              Logout
-            </button>
+            <button onClick={handleGoogleLogOut}>Logout</button>
           </div>
         ) : (
           <div className="flex items-center">
+            <button onClick={handleCart}>
+              <GrShop />
+            </button>
             <img
               src={userData.photoURL}
               alt={userData.displayName}
-              className="w-9 ml-4 mr-2 rounded-full"
+              className="w-9 ml-5 mr-2 rounded-full"
             />
-            <p>{`${userData && userData.displayName} 님`}</p>
-            <button onClick={handleGoogleLogOut} className="ml-4">
-              Logout
-            </button>
+            <p className="mr-4">{`${userData && userData.displayName} 님`}</p>
+            <button onClick={handleGoogleLogOut}>Logout</button>
           </div>
         )
       ) : (
