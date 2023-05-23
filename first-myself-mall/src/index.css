@@ -15,5 +15,5 @@ code {
 }
 
 #root {
-  @apply p-5;
+  @apply p-3 pt-1;
 }

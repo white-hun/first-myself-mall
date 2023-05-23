@@ -14,7 +14,7 @@ export default function Header() {
       user != null ? navigate("/carts") : alert("로그인 해주세요.");
     });
   return (
-    <header className="w-full flex p-4 pb-10 text-2xl justify-between">
+    <header className="w-full flex mb-10 px-4 py-5 text-2xl justify-between border-b border-gray-300 ">
       <Link to="/" className="flex items-center">
         <BsShop />
         <p className="ml-2">shoppy</p>
@@ -31,5 +31,3 @@ export default function Header() {
     </header>
   );
 }
-
-// admin 이면 새로운 제품 등록할 수 있는 수정버튼(제품등록 페이지)

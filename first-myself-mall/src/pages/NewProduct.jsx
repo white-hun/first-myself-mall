@@ -122,7 +122,7 @@ export default function NewProduct() {
         id: uuidv4(),
         imageUrl: imageUrl,
         name: name,
-        price: price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        price: price,
         category: category,
         size: {
           default: {

@@ -7,7 +7,7 @@ export default function MyCart() {
   const [cartProd, setCartProd] = useState([]);
   useEffect(() => {
     const getProd = async () => {
-      const q = query(collection(db, "board", "boardItems", "items"));
+      const q = query(collection(db, "board", "basket", "basketItems"));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const docProd = { ...doc.data() };

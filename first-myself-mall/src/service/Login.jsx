@@ -33,15 +33,27 @@ export default function Login() {
             <button onClick={handleNewProduct}>
               <BsPencilFill />
             </button>
-            <img src={userData.photoURL} alt={userData.displayName} className="w-10 ml-4 mr-2" />
+            <img
+              src={userData.photoURL}
+              alt={userData.displayName}
+              className="w-9 ml-4 mr-2 rounded-full"
+            />
             <p className="mr-4">{`${userData && userData.displayName} 님`}</p>
-            <button onClick={handleGoogleLogOut}>Logout</button>
+            <button onClick={handleGoogleLogOut} className="ml-4">
+              Logout
+            </button>
           </div>
         ) : (
-          <div>
-            <img src={userData.photoURL} alt={userData.displayName} />
+          <div className="flex items-center">
+            <img
+              src={userData.photoURL}
+              alt={userData.displayName}
+              className="w-9 ml-4 mr-2 rounded-full"
+            />
             <p>{`${userData && userData.displayName} 님`}</p>
-            <button onClick={handleGoogleLogOut}>Logout</button>
+            <button onClick={handleGoogleLogOut} className="ml-4">
+              Logout
+            </button>
           </div>
         )
       ) : (

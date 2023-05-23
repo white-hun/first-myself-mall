@@ -150,16 +150,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="px-20">
+    <div>
       <Banner />
-      {prod && (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-3">
-          {prod.map((item) => (
-            <ProductCard key={item.id} product={item} />
-          ))}
-        </ul>
-      )}
-      {console.log(prod)}
+      <div className="px-20 flex justify-center">
+        {prod && (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-5 gap-10 gap-y-3">
+            {prod.map((item) => (
+              <ProductCard key={item.id} product={item} />
+            ))}
+          </ul>
+        )}
+        {console.log(prod)}
+      </div>
     </div>
   );
 }

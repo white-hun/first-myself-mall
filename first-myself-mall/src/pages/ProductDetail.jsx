@@ -1,4 +1,4 @@
-import { collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { auth, db } from "../service/firebaseConfig";
@@ -12,12 +12,12 @@ export default function ProductDetail() {
   const { imageUrl, name, category, price, description, size } = product;
   // const [ small, medium, large, extralarge, doubleextralarge ] = size.default;
   const [quantity, setQuantity] = useState(1);
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState("");
 
   const board = collection(db, "board", "basket", "basketItems");
   const setBoard = async () =>
-    await setDoc(
-      doc(board, "basket"),
+    await addDoc(
+      board,
       {
         id: uuidv4(),
         imageUrl: imageUrl,
@@ -31,11 +31,17 @@ export default function ProductDetail() {
       { merge: true }
     );
 
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
+    e.preventDefault();
+    console.log(e.target.value);
+    // console.log(selected);
+  };
+
   const handleBasketFunction = () => {
     setBoard();
     setQuantity(1);
     setSelected("");
-    console.log(selected);
   };
 
   const handleBasket = (e) => {
@@ -53,46 +59,51 @@ export default function ProductDetail() {
     setQuantity(quantity + 1);
   };
 
-  const handleSelect = (e) => setSelected(e.target.value);
-
   return (
-    <section className="flex text-2xl mx-36">
-      <article className="w-5/12">
-        <img src={imageUrl} alt={name} />
+    <section className="grid lg:grid-cols-1 xl:grid-cols-2 text-2xl mx-36">
+      <article className="w-10/12 mx-10">
+        <img src={imageUrl} alt={name} className="rounded-md" />
       </article>
-      <article className="mx-24 my-5">
-        <div className="flex items-center">
-          <h2 className="font-semibold my-4 text-4xl mr-10">{name}</h2>
+      <article className="w-10/12 my-24 mx-10">
+        <div className="flex items-end border-b border-gray-300">
+          <h2 className="font-semibold py-4 text-4xl mr-5">{name}</h2>
           <p className="my-4 text-gray-300">{category}</p>
         </div>
-        <p className="my-10">{price * quantity}원</p>
-        <p className="my-10">{description}</p>
+        <p className="py-7 border-b border-gray-300">
+          {(price * quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+        </p>
+        <p className="py-8 border-b border-gray-300">{description}</p>
         <el htmlFor="size"></el>
         <select
           id="size"
           onChange={handleSelect}
           value={selected}
-          className="border-solid border-2 border-lightgray-400 rounded-md my-10"
+          className="border-solid border-2 border-gray-300 rounded-md my-7 py-3 focus:outline-none hover:border-gray-700"
         >
-          <option value="">--pleae choose a size--</option>
-          <option value="">{size.default.small}</option>
-          <option value="">{size.default.medium}</option>
-          <option value="">{size.default.large}</option>
-          <option value="">{size.default.extralarge}</option>
-          <option value="">{size.default.doubleextralarge}</option>
+          <option value="">-- please choose a size --</option>
+          <option value={size.default.small}>{size.default.small}</option>
+          <option value={size.default.medium}>{size.default.medium}</option>
+          <option value={size.default.large}>{size.default.large}</option>
+          <option value={size.default.extralarge}>{size.default.extralarge}</option>
+          <option value={size.default.doubleextralarge}>{size.default.doubleextralarge}</option>
           {/* {Object.entries(size.default).map(([key, value]) => (
             <option key={product.id} value={value}>
               {value}
             </option>
           ))} */}
         </select>
-        <div className="flex items-center my-4">
+        <div className="flex items-center py-5 border-b border-gray-300">
           {quantity >= 2 ? (
-            <button onClick={handleMinus}>-</button>
+            <button
+              onClick={handleMinus}
+              className="flex text-3xl mr-3 px-3 border-solid border-2 border-gray-700 rounded-md w-10 h-10 justify-center"
+            >
+              -
+            </button>
           ) : (
             <button
               disabled
-              className="flex text-3xl mr-3 px-3 border-solid border-2 border-lightgray-400 rounded-md w-10 justify-center"
+              className="flex text-3xl mr-3 px-3 border-solid border-2 border-gray-300 text-gray-300 rounded-md w-10 h-10 justify-center"
             >
               -
             </button>
@@ -100,18 +111,18 @@ export default function ProductDetail() {
           <p className="mx-5">{quantity}</p>
           <button
             onClick={handlePlus}
-            className="flex mx-3 px-3 border-solid border-2 border-lightgray-400 rounded-md w-10 justify-center"
+            className="flex mx-3 px-3 border-solid border-2 border-gray-700 rounded-md w-10 h-10 justify-center"
           >
             +
           </button>
         </div>
-        <div className="flex my-10">
+        <div className="flex my-10 justify-between">
           <form onSubmit={handleBasket}>
-            <button className="border-solid border-2 border-lightgray-600 rounded-md mr-4 px-3">
+            <button className="mr-4 px-24 py-3 border-solid border-2 border-gray-300 hover:border-gray-700 rounded-md">
               장바구니
             </button>
           </form>
-          <button className="border-solid border-2 border-lightgray-600 rounded-md px-3">
+          <button className="px-24 py-3 border-solid border-2 border-gray-300 hover:border-gray-700 rounded-md">
             구매하기
           </button>
         </div>
