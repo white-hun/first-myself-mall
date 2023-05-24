@@ -18,15 +18,31 @@ export default function MyCart() {
   }, []);
 
   return (
-    <>
-      {cartProd && (
-        <ul>
-          {cartProd.map((item) => (
-            <CartProduct key={item.id} product={item} />
-          ))}
-        </ul>
-      )}
-      {/* {console.log(cartProd)} */}
-    </>
+    <section className="flex mt-36 mx-12">
+      <article className="w-9/12">
+        {cartProd && (
+          <ul>
+            {cartProd.map((item) => (
+              <CartProduct key={item.id} product={item} />
+            ))}
+          </ul>
+        )}
+        {/* {console.log(cartProd)} */}
+      </article>
+      <article>
+        <h2>결제 정보</h2>
+        <p>구매할 상품</p>
+        {cartProd && (
+          <ul>
+            {cartProd.map((item) => (
+              <li key={item.id}>{item.name}</li>
+            ))}
+          </ul>
+        )}
+        <p>총 수량</p>
+        <p>합계 금액</p>
+        <button>구매하기</button>
+      </article>
+    </section>
   );
 }
