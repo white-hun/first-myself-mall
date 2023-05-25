@@ -154,24 +154,61 @@ export default function NewProduct() {
     <form onSubmit={handleSubmit}>
       <h2>새로운 제품 등록</h2>
       <Upload parentFunction={parentFunction} />
-      <input type="text" placeholder="제품명" onChange={handleName} value={name} required />
-      <input type="text" placeholder="가격" onChange={handlePrice} value={price} required />
-      <input
-        type="text"
-        placeholder="카테고리"
-        onChange={handleCategory}
-        value={category}
-        required
-      />
-      <input type="text" placeholder="사이즈" onChange={handleSize} value={size} required />
-      <input
-        type="text"
-        placeholder="제품설명"
-        onChange={handleDescription}
-        value={description}
-        required
-      />
-      <button>제품 등록하기</button>
+      <div>
+        <div className="flex">
+          <p>상품명</p>
+          <input
+            type="text"
+            onChange={handleName}
+            value={name}
+            required
+            className="w-36 mr-4 1 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+          />
+        </div>
+        <div className="flex">
+          <p>가격</p>
+          <input
+            type="text"
+            onChange={handlePrice}
+            value={price}
+            required
+            className="w-36 mr-4 1 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+          />
+        </div>
+        <div className="flex">
+          <p>분류</p>
+          <input
+            type="text"
+            onChange={handleCategory}
+            value={category}
+            required
+            className="w-36 mr-4 1 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+          />
+        </div>
+        <div className="flex">
+          <p>사이즈</p>
+          <input
+            type="text"
+            onChange={handleSize}
+            value={size}
+            required
+            className="w-36 mr-4 1 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+          />
+        </div>
+        <div className="flex">
+          <p>제품설명</p>
+          <input
+            type="text"
+            onChange={handleDescription}
+            value={description}
+            required
+            className="w-36 mr-4 1 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+          />
+        </div>
+      </div>
+      <button className="w-36 mr-4 py-1 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
+        제품 등록하기
+      </button>
     </form>
   );
 }

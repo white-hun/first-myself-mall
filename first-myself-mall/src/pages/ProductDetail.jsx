@@ -62,23 +62,23 @@ export default function ProductDetail() {
   return (
     <section className="grid lg:grid-cols-1 xl:grid-cols-2 text-2xl mx-36">
       <article className="w-10/12 mx-10">
-        <img src={imageUrl} alt={name} className="rounded-md" />
+        <img src={imageUrl} alt={name} className="rounded-lg" />
       </article>
       <article className="w-10/12 my-24 mx-10">
-        <div className="flex items-end border-b border-gray-300">
+        <div className="flex items-end border-b border-gray-200">
           <h2 className="font-semibold py-4 text-4xl mr-5">{name}</h2>
-          <p className="my-4 text-gray-300 text-xl">{category}</p>
+          <p className="my-4 text-gray-200 text-xl">{category}</p>
         </div>
-        <p className="py-7 border-b border-gray-300">
+        <p className="py-7 border-b border-gray-200">
           {(price * quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
         </p>
-        <p className="py-8 border-b border-gray-300">{description}</p>
+        <p className="py-8 border-b border-gray-200">{description}</p>
         <el htmlFor="size"></el>
         <select
           id="size"
           onChange={handleSelect}
           value={selected}
-          className="border-solid border-2 border-gray-300 rounded-md my-7 py-2 focus:outline-none hover:border-gray-700"
+          className="border-solid border-2 border-gray-200 rounded-md my-7 py-2 focus:outline-none hover:border-gray-700"
         >
           <option value="">-- please choose a size --</option>
           <option value={size.default.small}>{size.default.small}</option>
@@ -92,7 +92,7 @@ export default function ProductDetail() {
             </option>
           ))} */}
         </select>
-        <div className="flex items-center py-5 border-b border-gray-300">
+        <div className="flex items-center py-5 border-b border-gray-200">
           {quantity >= 2 ? (
             <button
               onClick={handleMinus}
@@ -103,7 +103,7 @@ export default function ProductDetail() {
           ) : (
             <button
               disabled
-              className="flex text-3xl mr-3 px-3 border-solid border-2 border-gray-300 text-gray-300 rounded-md w-10 h-10 justify-center"
+              className="flex text-3xl mr-3 px-3 border-solid border-2 border-gray-200 text-gray-300 rounded-md w-10 h-10 justify-center"
             >
               -
             </button>
@@ -118,11 +118,11 @@ export default function ProductDetail() {
         </div>
         <div className="flex my-10 justify-between">
           <form onSubmit={handleBasket}>
-            <button className="mr-4 px-24 py-3 border-solid border-2 border-gray-300 hover:border-gray-700 rounded-md">
+            <button className="mr-4 px-24 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
               장바구니
             </button>
           </form>
-          <button className="px-24 py-3 border-solid border-2 border-gray-300 hover:border-gray-700 rounded-md">
+          <button className="px-24 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
             구매하기
           </button>
         </div>

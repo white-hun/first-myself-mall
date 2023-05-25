@@ -31,15 +31,18 @@ export default function Upload({ parentFunction }) {
     <div>
       <section>
         <form>
-          <p>Upload Image</p>
           <div>
             <input type="file" onChange={handleChange} />
           </div>
-          <button onClick={handleUpload}>Upload File</button>
+          <button
+            onClick={handleUpload}
+            className="w-36 mr-4 py-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+          >
+            이미지 업로드
+          </button>
         </form>
       </section>
       <section>
-        <p>The resulting Image</p>
         <div>{cloudinaryImage && <img src={cloudinaryImage} alt="" />}</div>
       </section>
       {/* {console.log(cloudinaryImage)} */}

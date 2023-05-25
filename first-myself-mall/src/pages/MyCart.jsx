@@ -19,7 +19,7 @@ export default function MyCart() {
 
   return (
     <section className="flex mt-36 mx-12">
-      <article className="w-9/12">
+      <article className="w-8/12">
         {cartProd && (
           <ul>
             {cartProd.map((item) => (
@@ -29,19 +29,23 @@ export default function MyCart() {
         )}
         {/* {console.log(cartProd)} */}
       </article>
-      <article>
-        <h2>결제 정보</h2>
-        <p>구매할 상품</p>
+      <article className="w-1/4 text-xl mx-10 my-7">
+        <h2 className="text-2xl font-semibold border-b border-gray-200 my-3">결제 정보</h2>
+        <p className="font-semibold my-3">구매할 상품</p>
         {cartProd && (
-          <ul>
+          <ul className="border-b border-gray-200 pb-40">
             {cartProd.map((item) => (
               <li key={item.id}>{item.name}</li>
             ))}
           </ul>
         )}
-        <p>총 수량</p>
-        <p>합계 금액</p>
-        <button>구매하기</button>
+        <div className="my-3">
+          <p className="font-semibold mt-4">합계 금액</p>
+          <p className="border-b border-gray-200 pb-3 my-2">100000000원</p>
+        </div>
+        <button className="w-56 mr-4 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
+          구매하기
+        </button>
       </article>
     </section>
   );

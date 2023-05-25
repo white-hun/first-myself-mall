@@ -8,16 +8,22 @@ export default function CartProduct({ product }) {
 
   return (
     <section className="my-5">
-      <article className="flex">
+      <article className="flex items-center bg-gray-50 rounded-xl p-2">
         <div onClick={handleClick}>
-          <img src={imageUrl} alt={name} className="rounded-md w-52" />
+          <img src={imageUrl} alt={name} className="rounded-lg w-44" />
         </div>
-        <div className="mx-5">
-          <p>{name}</p>
-          <div>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
-          <div>{category}</div>
-          <div>{size}</div>
-          <div>{quantity}</div>
+        <div className="mx-5 text-xl">
+          <div className="flex items-center">
+            <p className="my-1 mr-2">{name}</p>
+            <div className="text-sm text-gray-400">{category}</div>
+          </div>
+          <p className="my-1">사이즈 {size}</p>
+          <div className="flex justify-between w-96">
+            <p className="my-1">수량 {quantity}</p>
+            <p className="my-1 font-semibold">
+              {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+            </p>
+          </div>
         </div>
       </article>
     </section>
