@@ -3,7 +3,14 @@ import { initializeApp } from "firebase/app";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  browserSessionPersistence,
+  getAuth,
+  onAuthStateChanged,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -24,6 +31,16 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+    const provider = new GoogleAuthProvider();
+    return signInWithEmailAndPassword(auth, provider);
+  })
+  .catch((error) => {
+    const errorCode = error.errorCode;
+    const errorMEssage = error.message;
+  });
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
