@@ -73,7 +73,7 @@ export default function ProductDetail() {
           {(price * quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
         </p>
         <p className="py-8 border-b border-gray-200">{description}</p>
-        <el htmlFor="size"></el>
+        <label htmlFor="size"></label>
         <select
           id="size"
           onChange={handleSelect}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { FiCameraOff } from "react-icons/fi";
 
 export default function Upload({ parentFunction }) {
   const [uploadFile, setUploadFile] = useState("");
@@ -34,16 +35,23 @@ export default function Upload({ parentFunction }) {
           <div>
             <input type="file" onChange={handleChange} />
           </div>
+          <div className="flex justify-center border-2 border-gray-300 w-52 h-60">
+            {cloudinaryImage ? (
+              <img src={cloudinaryImage} alt="" />
+            ) : (
+              <div className="flex items-center p-4">
+                <FiCameraOff className="text-2xl mr-3 text-gray-300" />
+                <p className="text-xl font-semibold text-gray-300">이미지 없음</p>
+              </div>
+            )}
+          </div>
           <button
             onClick={handleUpload}
-            className="w-36 mr-4 py-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+            className="w-52 mt-5 mr-4 py-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
           >
             이미지 업로드
           </button>
         </form>
-      </section>
-      <section>
-        <div>{cloudinaryImage && <img src={cloudinaryImage} alt="" />}</div>
       </section>
       {/* {console.log(cloudinaryImage)} */}
     </div>

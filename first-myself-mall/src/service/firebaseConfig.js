@@ -39,7 +39,8 @@ setPersistence(auth, browserSessionPersistence)
   })
   .catch((error) => {
     const errorCode = error.errorCode;
-    const errorMEssage = error.message;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
   });
 
 // Initialize Cloud Firestore and get a reference to the service
