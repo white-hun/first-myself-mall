@@ -151,69 +151,73 @@ export default function NewProduct() {
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        <h2 className="text-2xl font-semibold ml-5 mb-5">새로운 제품 등록</h2>
-        <article className="m-5">
-          <Upload parentFunction={parentFunction} />
-        </article>
-        <article className="m-5 text-xl font-semibold">
-          <div className="flex my-3">
-            <p>상품명</p>
-            <input
-              type="text"
-              onChange={handleName}
-              value={name}
-              required
-              className="w-36 ml-7 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
-            />
-          </div>
-          <div className="flex my-3">
-            <p>가격</p>
-            <input
-              type="text"
-              onChange={handlePrice}
-              value={price}
-              required
-              className="w-36 ml-12 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
-            />
-          </div>
-          <div className="flex my-3">
-            <p>분류</p>
-            <input
-              type="text"
-              onChange={handleCategory}
-              value={category}
-              required
-              className="w-36 ml-12 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
-            />
-          </div>
-          <div className="flex my-3">
-            <p>사이즈</p>
-            <input
-              type="text"
-              onChange={handleSize}
-              placeholder="쉼표로 구분해주세요."
-              value={size}
-              required
-              className="w-36 ml-7 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md text-base"
-            />
-          </div>
-          <div className="flex my-3">
-            <p>제품설명</p>
-            <input
-              type="text"
-              onChange={handleDescription}
-              value={description}
-              required
-              className="w-96 ml-2 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
-            />
-          </div>
-        </article>
-        <button className="w-52 mx-5 py-1 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
-          제품 등록하기
-        </button>
+    <div className="flex justify-center">
+      <form onSubmit={handleSubmit} className="w-11/12 px-10">
+        <h2 className="text-2xl font-semibold ml-8 mt-10 mb-4">새로운 제품 등록</h2>
+        <section className="grid grid-cols-1 lg:grid-cols-3 bg-gray-100 rounded-lg">
+          <article className="m-4 ml-8 col-start-1 col-span-1">
+            <Upload parentFunction={parentFunction} />
+          </article>
+          <article className="mr-5 mt-9 text-xl col-span-2">
+            <div className="flex my-5">
+              <p className="font-semibold">상품명</p>
+              <input
+                type="text"
+                onChange={handleName}
+                value={name}
+                required
+                className="w-48 ml-7 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+              />
+            </div>
+            <div className="flex my-5">
+              <p className="font-semibold">가격</p>
+              <input
+                type="text"
+                onChange={handlePrice}
+                value={price}
+                required
+                className="w-48 ml-12 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+              />
+            </div>
+            <div className="flex my-5">
+              <p className="font-semibold">분류</p>
+              <input
+                type="text"
+                onChange={handleCategory}
+                value={category}
+                required
+                className="w-48 ml-12 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+              />
+            </div>
+            <div className="flex my-5">
+              <p className="font-semibold">사이즈</p>
+              <input
+                type="text"
+                onChange={handleSize}
+                placeholder="쉼표로 구분해주세요."
+                value={size}
+                required
+                className="w-48 ml-7 mr-4 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md text-base"
+              />
+            </div>
+            <div className="flex mt-5">
+              <p className="font-semibold">제품설명</p>
+              <textarea
+                type="text"
+                onChange={handleDescription}
+                value={description}
+                required
+                className="w-10/12 h-20 ml-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+              />
+            </div>
+            <article className="flex justify-end">
+              <button className="w-52 mt-3 mr-1 py-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md text-base bg-white justify-end">
+                제품 등록하기
+              </button>
+            </article>
+          </article>
+        </section>
       </form>
-    </section>
+    </div>
   );
 }

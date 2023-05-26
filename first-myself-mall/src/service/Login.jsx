@@ -49,9 +49,9 @@ export default function Login() {
             <img
               src={userData.photoURL}
               alt={userData.displayName}
-              className="w-9 ml-4 mr-2 rounded-full"
+              className="w-7 ml-4 mr-2 rounded-full"
             />
-            <p className="mr-4">{`${userData && userData.displayName} 님`}</p>
+            <p className="mr-4 text-xl">{`${userData && userData.displayName} 님`}</p>
             <button onClick={handleGoogleLogOut}>Logout</button>
           </div>
         ) : (
@@ -62,9 +62,9 @@ export default function Login() {
             <img
               src={userData.photoURL}
               alt={userData.displayName}
-              className="w-9 ml-5 mr-2 rounded-full"
+              className="w-7 ml-5 mr-2 rounded-full"
             />
-            <p className="mr-4">{`${userData && userData.displayName} 님`}</p>
+            <p className="mr-4 text-xl">{`${userData && userData.displayName} 님`}</p>
             <button onClick={handleGoogleLogOut}>Logout</button>
           </div>
         )
