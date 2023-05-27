@@ -43,7 +43,7 @@ export default function MyCart() {
           )}
           <div className="my-3">
             <p className="font-semibold mt-4">합계 금액</p>
-            <p className="border-b border-gray-200 pb-3 my-2">100000000원</p>
+            <p className="border-b border-gray-200 pb-3 my-2">합계 금액</p>
           </div>
           <button className="w-56 mr-4 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
             구매하기
