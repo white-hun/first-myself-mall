@@ -1,8 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-// test
-
 export default function ProductCard({ product }) {
   const { name, price, category, imageUrl } = product;
   const navigate = useNavigate();
