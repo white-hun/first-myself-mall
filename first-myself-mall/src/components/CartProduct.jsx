@@ -29,3 +29,5 @@ export default function CartProduct({ product }) {
     </section>
   );
 }
+
+// test
