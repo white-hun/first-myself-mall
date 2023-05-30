@@ -17,6 +17,9 @@ export default function MyCart() {
     getProd();
   }, []);
 
+  const mapPrice = cartProd.map((prod) => prod.price * prod.quantity);
+  const totalPrice = mapPrice.reduce((a, b) => a + b, 0);
+
   return (
     <div>
       <h1 className="text-3xl mx-20 mt-24 mb-3 font-semibold">장바구니</h1>
@@ -43,9 +46,9 @@ export default function MyCart() {
           )}
           <div className="my-3">
             <p className="font-semibold mt-4">합계 금액</p>
-            {cartProd.map((total) => {
-              <p className="border-b border-gray-200 pb-3 my-2">{total.price}</p>;
-            })}
+            <p className="border-b border-gray-200 pb-3 my-2 font-semibold">
+              {totalPrice.toLocaleString()}원
+            </p>
           </div>
           <button className="w-56 mr-4 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
             구매하기
