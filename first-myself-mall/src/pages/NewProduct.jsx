@@ -152,7 +152,7 @@ export default function NewProduct() {
 
   return (
     <div className="flex justify-center">
-      <form onSubmit={handleSubmit} className="w-7/12 px-10">
+      <form onSubmit={handleSubmit} className="w-11/12 px-10">
         <h2 className="text-2xl font-semibold ml-8 mt-10 mb-4">새로운 제품 등록</h2>
         <section className="grid grid-cols-1 lg:grid-cols-3 bg-gray-100 rounded-lg">
           <article className="m-4 ml-8 col-start-1 col-span-1">
