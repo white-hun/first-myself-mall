@@ -95,6 +95,8 @@ import { db } from "../service/firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import Upload from "../service/Upload";
 
+// 로그인 정보가 있으면 유저 경로 내부에 장바구니 추가
+
 export default function NewProduct() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -114,6 +116,7 @@ export default function NewProduct() {
     // console.log(imageUrl);
   };
 
+  //------------------------------------------------------------------------
   const board = collection(db, "board", "boardItems", "items");
   const setBoard = async () =>
     await addDoc(

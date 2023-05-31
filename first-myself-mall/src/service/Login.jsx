@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../service/firebaseConfig";
+import { auth, db } from "../service/firebaseConfig";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -10,30 +10,54 @@ import {
 } from "firebase/auth";
 import { BsPencilFill } from "react-icons/bs";
 import { GrShop } from "react-icons/gr";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function Login() {
   const [userData, setUserData] = useState(null);
   // const { displayName, photoURL } = userData;
   const navigate = useNavigate();
+
+  // 구글 로그인------------------------------------------
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((data) => {
-      setUserData(data.user);
       console.log(data);
+      setUserData(data.user);
     });
   };
-  //
+  //-----------------------------------------------------
+
+  // 로그인 정보 저장--------------------------------------
+  const board = collection(db, "users", "user", "userInfo");
+  const setUserInfo = async () =>
+    await addDoc(
+      board,
+      {
+        uid: userData.uid,
+        name: userData.displayName,
+        photoURL: userData.photoURL,
+        email: userData.email,
+      },
+      { merge: true }
+    );
+
+  useEffect(() => {
+    userData && setUserInfo();
+  }, []);
+  //--------------------------------------------------------
 
   const handleCart = () =>
     onAuthStateChanged(auth, (user) => {
       user != null ? navigate("/carts") : alert("로그인 해주세요.");
     });
+
   const handleGoogleLogOut = () => {
     const auth = getAuth();
     signOut(auth);
     setUserData(null);
     navigate("/");
   };
+
   const handleNewProduct = () => {
     navigate("/products/new");
   };

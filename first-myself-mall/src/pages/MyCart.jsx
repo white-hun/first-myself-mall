@@ -37,12 +37,14 @@ export default function MyCart() {
         <article className="w-1/4 text-xl mx-10 my-7">
           <h2 className="text-2xl font-semibold border-b border-gray-200 my-3">결제 정보</h2>
           <p className="font-semibold my-3">구매할 상품</p>
-          {cartProd && (
+          {cartProd ? (
             <ul className="border-b border-gray-200 pb-40">
               {cartProd.map((item) => (
                 <li key={item.id}>{item.name}</li>
               ))}
             </ul>
+          ) : (
+            <p>장바구니가 비었습니다.</p>
           )}
           <div className="my-3">
             <p className="font-semibold mt-4">합계 금액</p>
