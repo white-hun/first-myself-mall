@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../service/firebaseConfig";
+import { auth, db } from "../service/firebaseConfig";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { BsPencilFill } from "react-icons/bs";
 import { GrShop } from "react-icons/gr";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function Login() {
   const [userData, setUserData] = useState(null);
@@ -20,20 +21,37 @@ export default function Login() {
     signInWithPopup(auth, provider).then((data) => {
       setUserData(data.user);
       console.log(data);
+      console.log(userData);
     });
   };
-  //
+
+  const board = collection(db, "board", "user", "userInfo");
+  const setUserInfo = async () =>
+    await addDoc(board, {
+      uid: userData.uid,
+      name: userData.displayName,
+      photoURL: userData.photoURL,
+      email: userData.email,
+    });
+
+  const pushUserInfo = () => userData && setUserInfo();
+
+  useEffect(() => {
+    pushUserInfo();
+  }, [userData]);
 
   const handleCart = () =>
     onAuthStateChanged(auth, (user) => {
       user != null ? navigate("/carts") : alert("로그인 해주세요.");
     });
+
   const handleGoogleLogOut = () => {
     const auth = getAuth();
     signOut(auth);
     setUserData(null);
     navigate("/");
   };
+
   const handleNewProduct = () => {
     navigate("/products/new");
   };
