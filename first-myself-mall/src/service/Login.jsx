@@ -16,29 +16,35 @@ export default function Login() {
   const [userData, setUserData] = useState(null);
   // const { displayName, photoURL } = userData;
   const navigate = useNavigate();
+
+  // 구글 로그인------------------------------------------
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((data) => {
-      setUserData(data.user);
       console.log(data);
-      console.log(userData);
+      setUserData(data.user);
     });
   };
+  //-----------------------------------------------------
 
-  const board = collection(db, "board", "user", "userInfo");
+  // 로그인 정보 저장--------------------------------------
+  const board = collection(db, "users", "user", "userInfo");
   const setUserInfo = async () =>
-    await addDoc(board, {
-      uid: userData.uid,
-      name: userData.displayName,
-      photoURL: userData.photoURL,
-      email: userData.email,
-    });
-
-  const pushUserInfo = () => userData && setUserInfo();
+    await addDoc(
+      board,
+      {
+        uid: userData.uid,
+        name: userData.displayName,
+        photoURL: userData.photoURL,
+        email: userData.email,
+      },
+      { merge: true }
+    );
 
   useEffect(() => {
-    pushUserInfo();
-  }, [userData]);
+    userData && setUserInfo();
+  }, []);
+  //--------------------------------------------------------
 
   const handleCart = () =>
     onAuthStateChanged(auth, (user) => {
