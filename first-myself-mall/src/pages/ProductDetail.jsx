@@ -13,7 +13,7 @@ export default function ProductDetail() {
   // const [ small, medium, large, extralarge, doubleextralarge ] = size.default;
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState("");
-  const [uid, setUid] = useState("");
+  const [uid, setUid] = useState(null);
 
   onAuthStateChanged(auth, (user) => {
     setUid(user.uid);
@@ -21,7 +21,7 @@ export default function ProductDetail() {
 
   const setCart = async () =>
     await addDoc(
-      collection(db, "users", "user", `${uid}`, "userBasket"),
+      collection(db, "users", "user", `${uid}`, "userBasket", "basket"),
       {
         id: uuidv4(),
         imageUrl: imageUrl,
