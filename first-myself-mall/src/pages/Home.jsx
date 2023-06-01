@@ -162,8 +162,8 @@ export default function Home() {
             ))}
           </ul>
         )}
-        {console.log(prod)}
       </div>
+      {/* {console.log(prod)} */}
     </>
   );
 }
