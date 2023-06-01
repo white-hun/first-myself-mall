@@ -13,11 +13,15 @@ export default function ProductDetail() {
   // const [ small, medium, large, extralarge, doubleextralarge ] = size.default;
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState("");
+  const [uid, setUid] = useState("");
 
-  const board = collection(db, "board", "basket", "basketItems");
-  const setBoard = async () =>
+  onAuthStateChanged(auth, (user) => {
+    setUid(user.uid);
+  });
+
+  const setCart = async () =>
     await addDoc(
-      board,
+      collection(db, "users", "user", `${uid}`, "userBasket"),
       {
         id: uuidv4(),
         imageUrl: imageUrl,
@@ -25,7 +29,7 @@ export default function ProductDetail() {
         price: price * quantity,
         category: category,
         quantity: quantity,
-        size: selected, // size중 선택한 옵션
+        size: selected,
         description: description,
       },
       { merge: true }
@@ -39,7 +43,10 @@ export default function ProductDetail() {
   };
 
   const handleBasketFunction = () => {
-    setBoard();
+    onAuthStateChanged(auth, (user) => {
+      setUid(user.uid);
+    });
+    setCart();
     setQuantity(1);
     setSelected("");
   };

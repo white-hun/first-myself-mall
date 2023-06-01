@@ -49,7 +49,7 @@ export const db = getFirestore(app);
 // Detect auth state
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
-    // console.log(user);
+    console.log(user);
     console.log("Logged In");
   } else {
     // console.log(user);

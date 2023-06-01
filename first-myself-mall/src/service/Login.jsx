@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { BsPencilFill } from "react-icons/bs";
 import { GrShop } from "react-icons/gr";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function Login() {
   const [userData, setUserData] = useState(null);
@@ -23,15 +23,13 @@ export default function Login() {
     signInWithPopup(auth, provider).then((data) => {
       console.log(data);
       setUserData(data.user);
+      navigate("/");
     });
   };
-  //-----------------------------------------------------
 
-  // 로그인 정보 저장--------------------------------------
-  // const board = collection(db, "users", "uid");
   const setUserInfo = async () =>
     await setDoc(
-      doc(db, "users", `${userData.uid}`),
+      doc(db, "users", "user", `${userData.uid}`, "userInfo"),
       {
         name: userData.displayName,
         photoURL: userData.photoURL,
@@ -43,7 +41,6 @@ export default function Login() {
   useEffect(() => {
     userData && setUserInfo();
   }, [userData]);
-  //--------------------------------------------------------
 
   const handleCart = () =>
     onAuthStateChanged(auth, (user) => {
