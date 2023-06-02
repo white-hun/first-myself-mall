@@ -26,16 +26,27 @@ export default function Login() {
     });
   };
 
-  const setUserInfo = async () =>
-    await setDoc(
-      doc(db, "users", "user", `${userData.uid}`, "userInfo"),
-      {
-        name: userData.displayName,
-        photoURL: userData.photoURL,
-        email: userData.email,
-      },
-      { merge: true }
-    );
+  const setUserInfo = async () => {
+    userData.email === "whiteforcoding@gmail.com"
+      ? await setDoc(
+          doc(db, "users", "admin", `${userData.uid}`, "adminInfo"),
+          {
+            name: userData.displayName,
+            photoURL: userData.photoURL,
+            email: userData.email,
+          },
+          { merge: true }
+        )
+      : await setDoc(
+          doc(db, "users", "user", `${userData.uid}`, "userInfo"),
+          {
+            name: userData.displayName,
+            photoURL: userData.photoURL,
+            email: userData.email,
+          },
+          { merge: true }
+        );
+  };
 
   useEffect(() => {
     userData && setUserInfo();

@@ -14,17 +14,15 @@ export default function MyCart() {
 
   useEffect(() => {
     const getProd = async () => {
-      // const q = query(collection(db, "users", "user", `${uid}`, "userBasket", "basket"));
-      const querySnapshot = await getDocs(
-        query(collection(db, "users", "user", `${uid}`, "userBasket", "basket"))
-      );
+      const q = query(collection(db, "users", "user", `${uid}`, "userBasket", "basket"));
+      const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const docProd = { ...doc.data() };
         setCartProd((product) => [...product, docProd]);
       });
     };
     getProd();
-  }, []);
+  }, [uid]);
 
   const mapPrice = cartProd.map((prod) => prod.price * prod.quantity);
   const totalPrice = mapPrice.reduce((a, b) => a + b, 0);
