@@ -67,6 +67,3 @@ export default function MyCart() {
     </div>
   );
 }
-
-// 수량 버튼 추가
-// 합계 금액 함수 추가
