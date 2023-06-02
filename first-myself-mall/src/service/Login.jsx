@@ -14,7 +14,6 @@ import { doc, setDoc } from "firebase/firestore";
 
 export default function Login() {
   const [userData, setUserData] = useState(null);
-  // const { displayName, photoURL } = userData;
   const navigate = useNavigate();
 
   // 구글 로그인------------------------------------------

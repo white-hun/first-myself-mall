@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
 import CartProduct from "../components/CartProduct";
 import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "../service/firebaseConfig";
+import { auth, db } from "../service/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function MyCart() {
   const [cartProd, setCartProd] = useState([]);
+  const [uid, setUid] = useState(null);
+
+  onAuthStateChanged(auth, (user) => {
+    setUid(user.uid);
+  });
+
   useEffect(() => {
     const getProd = async () => {
-      const q = query(collection(db, "board", "basket", "basketItems"));
-      const querySnapshot = await getDocs(q);
+      // const q = query(collection(db, "users", "user", `${uid}`, "userBasket", "basket"));
+      const querySnapshot = await getDocs(
+        query(collection(db, "users", "user", `${uid}`, "userBasket", "basket"))
+      );
       querySnapshot.forEach((doc) => {
         const docProd = { ...doc.data() };
         setCartProd((product) => [...product, docProd]);
