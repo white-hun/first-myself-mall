@@ -15,7 +15,7 @@ export default function ProductDetail() {
   const [selected, setSelected] = useState("");
   const [uid, setUid] = useState(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   onAuthStateChanged(auth, (user) => {
     setUid(user.uid);
