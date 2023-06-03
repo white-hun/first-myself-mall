@@ -1,6 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { auth, db } from "../service/firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import { onAuthStateChanged } from "firebase/auth";
@@ -9,11 +9,13 @@ export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
-  const { imageUrl, name, category, price, description, size } = product;
+  const { id, imageUrl, name, category, price, description, size } = product;
   // const [ small, medium, large, extralarge, doubleextralarge ] = size.default;
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState("");
   const [uid, setUid] = useState(null);
+
+  const navigate = useNavigate();
 
   onAuthStateChanged(auth, (user) => {
     setUid(user.uid);
@@ -49,6 +51,12 @@ export default function ProductDetail() {
     setCart();
     setQuantity(1);
     setSelected("");
+    // const confirm = window.confirm("상품을 장바구니에 담았습니다. 장바구니로 가시겠습니까?");
+    // if (confirm) {
+    //   navigate("/carts");
+    // } else {
+    //   navigate(`/products/${id}`);
+    // }
   };
 
   const handleBasket = (e) => {

@@ -5,7 +5,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../service/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
-export default function CartProduct({ product }) {
+export default function CartProduct({ product, cartProd }) {
   const { name, price, category, size, quantity, imageUrl } = product;
   const navigate = useNavigate();
   const handleClick = () => navigate(`/products/${product.id}`, { state: { product } });
@@ -16,16 +16,17 @@ export default function CartProduct({ product }) {
     setUid(user.uid);
   });
 
-  const basketItemDelete = async () =>
-    await deleteDoc(doc(db, "users", "user", `${uid}`, "userBasket", "basket"));
+  const deleteBasketItems = async (id) => {
+    await deleteDoc(doc(db, "users", "user", `${uid}`, "userBasket", "basket", id));
+  };
 
   const handleDelete = (e) => {
+    deleteBasketItems(cartProd.map((prod) => prod.id));
     e.preventDefault();
-    basketItemDelete();
   };
 
   return (
-    <section className="my-5">
+    <section className="my-5" id={product.id}>
       <article className="flex items-center bg-gray-50 rounded-xl p-2">
         <div onClick={handleClick}>
           <img src={imageUrl} alt={name} className="rounded-lg w-44" />
@@ -55,5 +56,3 @@ export default function CartProduct({ product }) {
     </section>
   );
 }
-
-// test
