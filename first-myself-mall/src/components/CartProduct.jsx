@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiX } from "react-icons/hi";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, where } from "firebase/firestore";
 import { auth, db } from "../service/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -16,13 +16,21 @@ export default function CartProduct({ product, cartProd }) {
     setUid(user.uid);
   });
 
-  const deleteBasketItems = async (id) => {
-    await deleteDoc(doc(db, "users", "user", `${uid}`, "userBasket", "basket", id));
+  const deleteBasketItems = async () => {
+    const deleteProd = doc(
+      db,
+      "users",
+      "user",
+      `${uid}`,
+      "userBasket",
+      "basket",
+      "E35pleJnIEIK2KMlltKo"
+    );
+    await deleteDoc(deleteProd);
   };
 
   const handleDelete = (e) => {
-    deleteBasketItems(cartProd.map((prod) => prod.id));
-    e.preventDefault();
+    deleteBasketItems();
   };
 
   return (
