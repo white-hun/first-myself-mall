@@ -9,7 +9,7 @@ export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
-  const { id, imageUrl, name, category, price, description, size } = product;
+  const { imageUrl, name, category, price, description, size } = product;
   // const [ small, medium, large, extralarge, doubleextralarge ] = size.default;
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState("");
