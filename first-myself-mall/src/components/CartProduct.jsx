@@ -5,7 +5,7 @@ import { deleteDoc, doc, where } from "firebase/firestore";
 import { auth, db } from "../service/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
-export default function CartProduct({ product, cartProd }) {
+export default function CartProduct({ product }) {
   const { name, price, category, size, quantity, imageUrl } = product;
   const navigate = useNavigate();
   const handleClick = () => navigate(`/products/${product.id}`, { state: { product } });
