@@ -1,5 +1,5 @@
 import { addDoc, collection } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { auth, db } from "../service/firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
@@ -17,9 +17,16 @@ export default function ProductDetail() {
 
   // const navigate = useNavigate();
 
-  onAuthStateChanged(auth, (user) => {
-    setUid(user.uid);
-  });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUid(user.uid);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // onAuthStateChanged(auth, (user) => {
+  //   setUid(user.uid);
+  // });
 
   const setCart = async () =>
     await addDoc(

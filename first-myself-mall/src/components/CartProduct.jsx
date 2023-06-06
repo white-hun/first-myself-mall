@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiX } from "react-icons/hi";
 import { collection, deleteDoc, doc, getDocs, query } from "firebase/firestore";
@@ -11,9 +11,17 @@ export default function CartProduct({ product }) {
   const handleClick = () => navigate(`/products/${product.id}`, { state: { product } });
 
   const [uid, setUid] = useState(null);
-  onAuthStateChanged(auth, (user) => {
-    setUid(user.uid);
-  });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUid(user.uid);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // onAuthStateChanged(auth, (user) => {
+  //   setUid(user.uid);
+  // });
 
   const deleteBasketItems = async () => {
     const q = query(doc(db, "users", "user", `${uid}`, "userBasket", "basket", `${product.id}`));

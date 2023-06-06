@@ -8,9 +8,16 @@ export default function MyCart() {
   const [cartProd, setCartProd] = useState([]);
   const [uid, setUid] = useState(null);
 
-  onAuthStateChanged(auth, (user) => {
-    setUid(user.uid);
-  });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUid(user.uid);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // onAuthStateChanged(auth, (user) => {
+  //   setUid(user.uid);
+  // });
 
   useEffect(() => {
     const getProd = async () => {
