@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiX } from "react-icons/hi";
-import { deleteDoc, doc, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query } from "firebase/firestore";
 import { auth, db } from "../service/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -11,30 +11,24 @@ export default function CartProduct({ product }) {
   const handleClick = () => navigate(`/products/${product.id}`, { state: { product } });
 
   const [uid, setUid] = useState(null);
-
   onAuthStateChanged(auth, (user) => {
     setUid(user.uid);
   });
 
   const deleteBasketItems = async () => {
-    const deleteProd = doc(
-      db,
-      "users",
-      "user",
-      `${uid}`,
-      "userBasket",
-      "basket",
-      "E35pleJnIEIK2KMlltKo"
-    );
-    await deleteDoc(deleteProd);
+    const q = query(doc(db, "users", "user", `${uid}`, "userBasket", "basket", `${product.id}`));
+    const querySnapshot = await getDocs(q);
+    for (const docSnpshot of querySnapshot.docs) {
+      await deleteDoc(docSnpshot.ref);
+    }
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = () => {
     deleteBasketItems();
   };
 
   return (
-    <section className="my-5" id={product.id}>
+    <section className="my-5">
       <article className="flex items-center bg-gray-50 rounded-xl p-2">
         <div onClick={handleClick}>
           <img src={imageUrl} alt={name} className="rounded-lg w-44" />
