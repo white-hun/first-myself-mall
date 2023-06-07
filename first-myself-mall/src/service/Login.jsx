@@ -88,10 +88,20 @@ export default function Login() {
           <p className="mr-4 sm:text-xl lg:text-2xl 2xl:text-2xl">{`${
             userData && userData.displayName
           } 님`}</p>
-          <button onClick={handleGoogleLogOut}>Logout</button>
+          <button
+            onClick={handleGoogleLogOut}
+            className="hover:text-red-600 hover:scale-105 transition ease-in-out duration-300"
+          >
+            Logout
+          </button>
         </div>
       ) : (
-        <button onClick={handleGoogleLogin}>Login</button>
+        <button
+          onClick={handleGoogleLogin}
+          className="hover:text-blue-600 hover:scale-105 transition ease-in-out duration-300"
+        >
+          Login
+        </button>
       )}
     </div>
   );
