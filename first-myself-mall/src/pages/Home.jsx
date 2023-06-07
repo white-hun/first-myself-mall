@@ -157,7 +157,7 @@ export default function Home() {
       </div>
       <div className="flex justify-center">
         {prod && (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-5 gap-6 gap-y-3">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-5 gap-10 gap-y-10">
             {prod.map((item) => (
               <ProductCard key={item.id} product={item} />
             ))}

@@ -157,11 +157,11 @@ export default function NewProduct() {
     <div className="flex justify-center">
       <form onSubmit={handleSubmit} className="w-11/12 px-10">
         <h2 className="text-2xl font-semibold ml-8 mt-10 mb-4">새로운 제품 등록</h2>
-        <section className="grid grid-cols-1 lg:grid-cols-3 bg-gray-100 rounded-lg">
+        <section className="grid grid-cols-1 xl:grid-cols-3 bg-gray-100 rounded-lg p-5">
           <article className="m-4 ml-8 col-start-1 col-span-1">
             <Upload parentFunction={parentFunction} />
           </article>
-          <article className="mr-5 mt-9 text-xl col-span-2">
+          <article className="mr-5 mt-3 text-xl col-span-2 px-10">
             <div className="flex my-5">
               <p className="font-semibold mr-3">상품명</p>
               <input
@@ -169,7 +169,7 @@ export default function NewProduct() {
                 onChange={handleName}
                 value={name}
                 required
-                className="w-48 ml-7 mr-4 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+                className="w-48 ml-7 mr-4 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md transition ease-in-out duration-300"
               />
             </div>
             <div className="flex my-5">
@@ -179,7 +179,7 @@ export default function NewProduct() {
                 onChange={handlePrice}
                 value={price}
                 required
-                className="w-48 ml-12 mr-4 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+                className="w-48 ml-12 mr-4 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md transition ease-in-out duration-300"
               />
             </div>
             <div className="flex my-5">
@@ -189,7 +189,7 @@ export default function NewProduct() {
                 onChange={handleCategory}
                 value={category}
                 required
-                className="w-48 ml-12 mr-4 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+                className="w-48 ml-12 mr-4 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md transition ease-in-out duration-300"
               />
             </div>
             <div className="flex my-5">
@@ -200,7 +200,7 @@ export default function NewProduct() {
                 placeholder="쉼표로 구분해주세요."
                 value={size}
                 required
-                className="w-48 ml-7 mr-4 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md text-base"
+                className="w-48 ml-7 mr-4 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md text-base transition ease-in-out duration-300"
               />
             </div>
             <div className="flex mt-5">
@@ -210,11 +210,11 @@ export default function NewProduct() {
                 onChange={handleDescription}
                 value={description}
                 required
-                className="w-10/12 h-20 mr-2 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md"
+                className="w-10/12 h-20 mr-2 pl-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md transition ease-in-out duration-300"
               />
             </div>
             <article className="flex justify-end">
-              <button className="w-52 mt-3 mr-6 py-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md text-base bg-white justify-end">
+              <button className="w-52 mt-3 mr-2 py-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md text-base bg-white justify-end hover:scale-105 transition ease-in-out duration-300">
                 제품 등록하기
               </button>
             </article>

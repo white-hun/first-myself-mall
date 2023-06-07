@@ -63,7 +63,7 @@ export default function MyCart() {
               {totalPrice.toLocaleString()}원
             </p>
           </div>
-          <button className="w-56 mr-4 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
+          <button className="w-56 mr-4 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md font-semibold hover:scale-105 transition ease-in-out duration-300">
             구매하기
           </button>
         </article>

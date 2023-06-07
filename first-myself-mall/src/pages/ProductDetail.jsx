@@ -9,13 +9,13 @@ export default function ProductDetail() {
   const {
     state: { product },
   } = useLocation();
-  const { imageUrl, name, category, price, description, size } = product;
+  const { id, imageUrl, name, category, price, description, size } = product;
   // const [ small, medium, large, extralarge, doubleextralarge ] = size.default;
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState("");
   const [uid, setUid] = useState(null);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -51,6 +51,11 @@ export default function ProductDetail() {
     // console.log(selected);
   };
 
+  const confirm = () => {
+    const ok = window.confirm("상품을 장바구니에 담았습니다. 장바구니로 가시겠습니까?");
+    ok ? navigate("/carts") : navigate("/");
+  };
+
   const handleBasketFunction = () => {
     onAuthStateChanged(auth, (user) => {
       setUid(user.uid);
@@ -58,12 +63,7 @@ export default function ProductDetail() {
     setCart();
     setQuantity(1);
     setSelected("");
-    // const confirm = window.confirm("상품을 장바구니에 담았습니다. 장바구니로 가시겠습니까?");
-    // if (confirm) {
-    //   navigate("/carts");
-    // } else {
-    //   navigate(`/products/${id}`);
-    // }
+    confirm();
   };
 
   const handleBasket = (e) => {
@@ -86,7 +86,7 @@ export default function ProductDetail() {
       <article className="w-10/12 mx-10">
         <img src={imageUrl} alt={name} className="rounded-lg" />
       </article>
-      <article className="w-10/12 my-24 mx-10">
+      <article className="w-11/12 my-24 mx-10">
         <div className="flex items-end border-b border-gray-200">
           <h2 className="font-semibold py-4 text-4xl mr-5">{name}</h2>
           <p className="my-4 text-gray-200 text-xl">{category}</p>
@@ -100,7 +100,8 @@ export default function ProductDetail() {
           id="size"
           onChange={handleSelect}
           value={selected}
-          className="border-solid border-2 border-gray-200 rounded-md my-7 py-2 focus:outline-none hover:border-gray-700"
+          required
+          className="border-solid border-2 border-gray-200 rounded-md my-7 py-2 focus:outline-none hover:border-gray-700 transition ease-in-out"
         >
           <option value="">-- please choose a size --</option>
           <option value={size.default.small}>{size.default.small}</option>
@@ -118,7 +119,7 @@ export default function ProductDetail() {
           {quantity >= 2 ? (
             <button
               onClick={handleMinus}
-              className="flex text-3xl mr-3 px-3 border-solid border-2 border-gray-700 rounded-md w-10 h-10 justify-center"
+              className="flex text-3xl mr-3 px-3 border-solid border-2 border-gray-700 rounded-md w-10 h-10 justify-center hover:scale-95 transition ease-in-out duration-300"
             >
               -
             </button>
@@ -133,18 +134,19 @@ export default function ProductDetail() {
           <p className="mx-5">{quantity}</p>
           <button
             onClick={handlePlus}
-            className="flex mx-3 px-3 border-solid border-2 border-gray-700 rounded-md w-10 h-10 justify-center"
+            className="flex mx-3 px-3 border-solid border-2 border-gray-700 rounded-md w-10 h-10 justify-center hover:scale-95 transition ease-in-out duration-300"
           >
             +
           </button>
         </div>
-        <div className="flex my-10 justify-between">
-          <form onSubmit={handleBasket}>
-            <button className="mr-4 px-24 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
-              장바구니
-            </button>
-          </form>
-          <button className="px-24 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md">
+        <div className="grid grid-cols-2 gap-3 my-10">
+          <button
+            onClick={handleBasket}
+            className="px-20 py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md hover:scale-105 transition ease-in-out duration-300"
+          >
+            장바구니
+          </button>
+          <button className="py-3 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md hover:scale-105 transition ease-in-out duration-300">
             구매하기
           </button>
         </div>

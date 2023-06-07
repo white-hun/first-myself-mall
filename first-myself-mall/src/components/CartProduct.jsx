@@ -44,7 +44,7 @@ export default function CartProduct({ product }) {
           <div className="flex justify-end mb-5" key={id}>
             <button
               onClick={handleDelete}
-              className="border-solid border-2 border-gray-200 hover:border-gray-700 hover:text-red-600 rounded-md px-3"
+              className="border-solid border-2 border-gray-200 hover:border-gray-700 hover:text-red-600 rounded-md px-3 hover:scale-105 transition ease-in-out duration-300"
             >
               <HiX />
             </button>

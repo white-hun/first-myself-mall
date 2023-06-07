@@ -35,11 +35,11 @@ export default function Upload({ parentFunction }) {
           <div>
             <input type="file" onChange={handleChange} />
           </div>
-          <div className="flex justify-center border-2 border-gray-300 w-56 h-72 bg-white">
+          <div className="flex justify-center border-2 border-gray-300 w-56 h-72 bg-white mt-2">
             {cloudinaryImage ? (
               <img src={cloudinaryImage} alt="" />
             ) : (
-              <div className="flex items-center p-4 ">
+              <div className="flex items-center p-4">
                 <FiCameraOff className="text-2xl mr-3 text-gray-300" />
                 <p className="text-xl font-semibold text-gray-300">이미지 없음</p>
               </div>
@@ -47,13 +47,12 @@ export default function Upload({ parentFunction }) {
           </div>
           <button
             onClick={handleUpload}
-            className="w-56 mt-3.5 mr-4 py-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md bg-white"
+            className="w-56 mt-3.5 mr-4 py-2 border-solid border-2 border-gray-200 hover:border-gray-700 rounded-md bg-white hover:scale-105 transition ease-in-out duration-300"
           >
             이미지 업로드
           </button>
         </form>
       </section>
-      {/* {console.log(cloudinaryImage)} */}
     </div>
   );
 }
