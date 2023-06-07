@@ -85,7 +85,9 @@ export default function Login() {
             alt={userData.displayName}
             className="w-7 ml-4 mr-2 rounded-full"
           />
-          <p className="mr-4 text-xl">{`${userData && userData.displayName} 님`}</p>
+          <p className="mr-4 sm:text-xl lg:text-2xl 2xl:text-2xl">{`${
+            userData && userData.displayName
+          } 님`}</p>
           <button onClick={handleGoogleLogOut}>Logout</button>
         </div>
       ) : (

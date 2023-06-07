@@ -82,18 +82,16 @@ export default function ProductDetail() {
   };
 
   return (
-    <section className="grid lg:grid-cols-1 xl:grid-cols-2 text-2xl mx-36">
+    <section className="grid lg:grid-cols-1 xl:grid-cols-2 text-2xl mx-36 mt-20">
       <article className="w-10/12 mx-10">
         <img src={imageUrl} alt={name} className="rounded-lg" />
       </article>
-      <article className="w-11/12 my-24 mx-10">
+      <article className="w-11/12 my-20 mx-10">
         <div className="flex items-end border-b border-gray-200">
           <h2 className="font-semibold py-4 text-4xl mr-5">{name}</h2>
           <p className="my-4 text-gray-200 text-xl">{category}</p>
         </div>
-        <p className="py-7 border-b border-gray-200">
-          {(price * quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-        </p>
+        <p className="py-7 border-b border-gray-200">{(price * quantity).toLocaleString()}원</p>
         <p className="py-8 border-b border-gray-200">{description}</p>
         <label htmlFor="size"></label>
         <select

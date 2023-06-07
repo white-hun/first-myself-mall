@@ -17,7 +17,7 @@ export default function ProductCard({ product }) {
           <p className="text-lg font-semibold">{name}</p>
           <div className="text-gray-400">{category}</div>
         </div>
-        <div>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
+        <div>{price.toLocaleString()}</div>
       </div>
     </div>
   );

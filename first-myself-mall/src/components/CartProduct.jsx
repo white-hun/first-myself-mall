@@ -19,10 +19,6 @@ export default function CartProduct({ product }) {
     return () => unsubscribe();
   }, []);
 
-  // onAuthStateChanged(auth, (user) => {
-  //   setUid(user.uid);
-  // });
-
   const deleteBasketItems = async () => {
     const querySnapshot = query(
       doc(db, "users", "user", `${uid}`, "userBasket", "basket", `${product.id}`)
@@ -56,9 +52,7 @@ export default function CartProduct({ product }) {
           <p className="my-1">사이즈 {size}</p>
           <div className="flex justify-between w-96">
             <p className="my-1 mb-10">수량 {quantity}</p>
-            <p className="my-1 font-semibold">
-              {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-            </p>
+            <p className="my-1 font-semibold">{price.toLocaleString()}원</p>
           </div>
         </div>
       </article>
