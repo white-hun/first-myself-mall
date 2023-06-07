@@ -53,7 +53,7 @@ export default function Login() {
 
   const handleCart = () =>
     onAuthStateChanged(auth, (user) => {
-      user != null ? navigate("/carts") : alert("로그인 해주세요.");
+      user != null ? navigate(`/carts/${userData.uid}`) : alert("로그인 해주세요.");
     });
 
   const handleGoogleLogOut = () => {
