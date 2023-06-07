@@ -48,8 +48,8 @@ export default function Login() {
   };
 
   useEffect(() => {
-    userData && setUserInfo();
-  }, [userData]);
+    setUserInfo();
+  }, []);
 
   const handleCart = () =>
     onAuthStateChanged(auth, (user) => {
@@ -93,41 +93,6 @@ export default function Login() {
       )}
     </div>
   );
-  // return (
-  //   <div>
-  //     {userData != null ? (
-  //       userData.email === "whiteforcoding@gmail.com" ? (
-  //         <div className="flex items-center">
-  //           <button onClick={handleNewProduct}>
-  //             <BsPencilFill />
-  //           </button>
-  //           <img
-  //             src={userData.photoURL}
-  //             alt={userData.displayName}
-  //             className="w-7 ml-4 mr-2 rounded-full"
-  //           />
-  //           <p className="mr-4 text-xl">{`${userData && userData.displayName} 님`}</p>
-  //           <button onClick={handleGoogleLogOut}>Logout</button>
-  //         </div>
-  //       ) : (
-  //         <div className="flex items-center">
-  //           <button onClick={handleCart}>
-  //             <GrShop />
-  //           </button>
-  //           <img
-  //             src={userData.photoURL}
-  //             alt={userData.displayName}
-  //             className="w-7 ml-5 mr-2 rounded-full"
-  //           />
-  //           <p className="mr-4 text-xl">{`${userData && userData.displayName} 님`}</p>
-  //           <button onClick={handleGoogleLogOut}>Logout</button>
-  //         </div>
-  //       )
-  //     ) : (
-  //       <button onClick={handleGoogleLogin}>Login</button>
-  //     )}
-  //   </div>
-  // );
 }
 
 // .then((result) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiX } from "react-icons/hi";
-import { collection, deleteDoc, doc, getDocs, query } from "firebase/firestore";
+import { deleteDoc, doc, query } from "firebase/firestore";
 import { auth, db } from "../service/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
