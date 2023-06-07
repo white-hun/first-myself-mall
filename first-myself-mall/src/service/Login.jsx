@@ -70,7 +70,7 @@ export default function Login() {
 
   return (
     <div>
-      {userData ? (
+      {userData != null ? (
         userData.email === "whiteforcoding@gmail.com" ? (
           <div className="flex items-center">
             <button onClick={handleNewProduct}>

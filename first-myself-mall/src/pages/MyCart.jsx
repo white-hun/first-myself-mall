@@ -23,13 +23,10 @@ export default function MyCart() {
     const getProd = async () => {
       const q = query(collection(db, "users", "user", `${uid}`, "userBasket", "basket"));
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        const docProd = { ...doc.data() };
-        setCartProd((product) => [...product, docProd]);
-      });
+      setCartProd(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getProd();
-  }, [uid]);
+  }, [uid, cartProd]);
 
   const mapPrice = cartProd.map((prod) => prod.price * prod.quantity);
   const totalPrice = mapPrice.reduce((a, b) => a + b, 0);

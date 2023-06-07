@@ -6,7 +6,7 @@ import { auth, db } from "../service/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function CartProduct({ product }) {
-  const { name, price, category, size, quantity, imageUrl } = product;
+  const { id, name, price, category, size, quantity, imageUrl } = product;
   const navigate = useNavigate();
   const handleClick = () => navigate(`/products/${product.id}`, { state: { product } });
 
@@ -24,25 +24,24 @@ export default function CartProduct({ product }) {
   // });
 
   const deleteBasketItems = async () => {
-    const q = query(doc(db, "users", "user", `${uid}`, "userBasket", "basket", `${product.id}`));
-    const querySnapshot = await getDocs(q);
-    for (const docSnpshot of querySnapshot.docs) {
-      await deleteDoc(docSnpshot.ref);
-    }
+    const querySnapshot = query(
+      doc(db, "users", "user", `${uid}`, "userBasket", "basket", `${product.id}`)
+    );
+    await deleteDoc(querySnapshot);
   };
 
   const handleDelete = () => {
-    deleteBasketItems();
+    deleteBasketItems(id);
   };
 
   return (
-    <section className="my-5">
+    <section className="my-5" key={id}>
       <article className="flex items-center bg-gray-50 rounded-xl p-2">
         <div onClick={handleClick}>
           <img src={imageUrl} alt={name} className="rounded-lg w-44" />
         </div>
         <div className="mx-5 text-xl">
-          <div className="flex justify-end mb-5">
+          <div className="flex justify-end mb-5" key={id}>
             <button
               onClick={handleDelete}
               className="border-solid border-2 border-gray-200 hover:border-gray-700 hover:text-red-600 rounded-md px-3"

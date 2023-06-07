@@ -9,10 +9,7 @@ export default function AllProducts() {
     const getProd = async () => {
       const q = query(collection(db, "board", "boardItems", "items"));
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        const docProd = { ...doc.data() };
-        setProd((product) => [...product, docProd]);
-      });
+      setProd(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getProd();
   }, []);
