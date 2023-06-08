@@ -46,16 +46,23 @@ setPersistence(auth, browserSessionPersistence)
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
+export function onUserStateChanged(callback) {
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    callback(user);
+  });
+}
+
 // Detect auth state
-onAuthStateChanged(auth, (user) => {
-  if (user != null) {
-    console.log(user);
-    console.log("Logged In");
-  } else {
-    // console.log(user);
-    console.log("No user");
-  }
-});
+// onAuthStateChanged(auth, (user) => {
+//   if (user != null) {
+//     console.log(user);
+//     console.log("Logged In");
+//   } else {
+//     // console.log(user);
+//     console.log("No user");
+//   }
+// });
 
 //"https://www.gstatic.com/firebasejs/9.19.0/firebase-app.js"
 //"https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js"

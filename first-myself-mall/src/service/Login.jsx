@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../service/firebaseConfig";
+import { auth, db, onUserStateChanged } from "../service/firebaseConfig";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -15,6 +15,13 @@ import { doc, setDoc } from "firebase/firestore";
 export default function Login() {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    onUserStateChanged((user) => {
+      console.log(user);
+      setUserData(user);
+    });
+  }, []);
 
   // 구글 로그인------------------------------------------
   const handleGoogleLogin = () => {
