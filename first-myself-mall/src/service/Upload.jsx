@@ -18,12 +18,13 @@ export default function Upload({ parentFunction }) {
 
     Axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData)
       .then((response) => {
-        console.log(response);
+        console.log("1", response);
         setCloudinaryImage(response.data.secure_url);
       })
       .catch((error) => {
         console.log(error);
       });
+    console.log(uploadFile);
   };
 
   parentFunction(cloudinaryImage);
